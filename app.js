@@ -4,7 +4,7 @@ const E=(t,c,h,p)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=n
 const X=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const A={sa:196,vol:.8,rev:.35,inst:'sitar',eq:0,drone:false};
 const R=[1,16/15,9/8,6/5,5/4,4/3,45/32,3/2,8/5,5/3,9/5,15/8],NN=['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'];
-const BS={'सा':0,'रे':2,'ग':4,'म':5,'प':7,'ध':9,'नि':11},SW=['सा','रे॒','रे','ग॒','ग','म',"म'",'प','ध॒','ध','नि॒','नि'],SL=['Sa','re','Re','ga','Ga','Ma','Ma♯','Pa','dha','Dha','ni','Ni'];
+const BS={'सा':0,'रे':2,'ग':4,'म':5,'प':7,'ध':9,'नि':11},SW=['सा','रे॒','रे','ग॒','ग','म',"म'",'प','ध॒','ध','नि॒','नि'],SL=['षड्ज','कोमल ऋषभ','ऋषभ','कोमल गान्धार','गान्धार','मध्यम','तीव्र मध्यम','पंचम','कोमल धैवत','धैवत','कोमल निषाद','निषाद'];
 const ratio=i=>R[i]**(1-A.eq)*2**(i/12*A.eq),fq=s=>A.sa*ratio(((s%12)+12)%12)*2**Math.floor(s/12);
 const saName=()=>{const n=Math.round(12*Math.log2(A.sa/261.626));return NN[((n%12)+12)%12]+(4+Math.floor(n/12))};
 /* ---------- audio ---------- */
@@ -80,7 +80,7 @@ function hitD(b){const k=comps(b).map(x=>x[0]),h=(id,on)=>{if(!on)return;const e
 /* ---------- scheduler ---------- */
 let stoppers=[];
 function stopAll(){stoppers.forEach(f=>f());stoppers=[];$$('.hot').forEach(e=>e.classList.remove('hot'));$$('.bd .on').forEach(e=>e.classList.remove('on'));
- if(taalOn){taalOn=false;$('#tPlay').textContent='▶ Speel theka'}$('#beat').textContent='▶ Start'}
+ if(taalOn){taalOn=false;$('#tPlay').textContent='▶ ठेका बजाएँ'}$('#beat').textContent='▶ आरंभ'}
 function run(get,on,end){const c=au();let i=0,nx=c.currentTime+.1,live=true;
  const id=setInterval(()=>{while(live&&nx<c.currentTime+.2){const s=get(i);if(!s){stop();end&&end();return}s.fn(nx);const k=i,ms=(nx-c.currentTime)*1000;setTimeout(()=>live&&on&&on(k,s),Math.max(0,ms));nx+=s.dur;i++}},25);
  function stop(){live=false;clearInterval(id)}stoppers.push(stop);return stop}
@@ -93,12 +93,12 @@ const pak=t=>{const o=[];let p=null;String(t).split(',').forEach(ph=>{pn(ph).for
 const hot=n=>{$$('svg.wh circle.hot,.key.hot').forEach(e=>e.classList.remove('hot'));if(n==null)return;const pc=((n%12)+12)%12,c=$(`svg.wh circle[data-pc="${pc}"]`);c&&c.classList.add('hot')};
 function seq(a,bpm,vel=.5){const bd=60/bpm;return run(i=>i<a.length?{dur:a[i]==null?bd*.6:bd,fn:t=>a[i]!=null&&note(a[i],t,bd*1.1,vel),n:a[i]}:null,(i,s)=>hot(s.n),()=>hot())}
 const pcs=r=>new Set([...asc(r.aroh||''),...desc(r.avroh||'')].map(s=>((s%12)+12)%12));
-const wheel=u=>{let s='<svg class="wh" viewBox="0 0 220 220" width="220" height="220">';for(let i=0;i<12;i++){const a=i*Math.PI/6-Math.PI/2,x=110+82*Math.cos(a),y=110+82*Math.sin(a);s+=`<circle data-pc="${i}" class="${u.has(i)?'u':''}" cx="${x}" cy="${y}" r="17"/><text x="${x}" y="${y+4}">${SL[i]}</text>`}return s+'<text x="110" y="116" style="font-size:15px">Swar-roos</text></svg>'};
+const wheel=u=>{let s='<svg class="wh" viewBox="0 0 220 220" width="220" height="220">';for(let i=0;i<12;i++){const a=i*Math.PI/6-Math.PI/2,x=110+82*Math.cos(a),y=110+82*Math.sin(a);s+=`<circle data-pc="${i}" class="${u.has(i)?'u':''}" cx="${x}" cy="${y}" r="17"/><text x="${x}" y="${y+4}">${SW[i]}</text>`}return s+'<text x="110" y="116" style="font-size:15px">स्वर-चक्र</text></svg>'};
 /* ---------- tijd ---------- */
 const hw=s=>{if(/सर्वकालिक|वर्षा/.test(s))return[0,24];const p=s.split(/[,(]/)[0];
  for(const[r,a,b]of[[/रात्रि.*प्रथम/,18,21],[/रात्रि.*द्वितीय/,21,24],[/रात्रि.*तृतीय/,0,3],[/रात्रि.*मध्य/,22,26],[/रात्रि.*अंतिम/,3,6],[/अत्यंत प्रथम/,4,7],[/प्रातःकाल.*प्रथम/,6,9],[/प्रातःकाल.*द्वितीय/,9,12],[/प्रातःकाल/,4,9],[/दिन.*प्रथम/,6,9],[/दिन.*द्वितीय/,9,12],[/दिन.*तृतीय|मध्याह्न/,12,15],[/दिन.*अंतिम/,15,18],[/सूर्यास्त|संध्या|सायं|सांध्य/,17,20]])if(r.test(p))return[a,b];return[0,24]};
 const inWin=(h,w)=>(h>=w[0]&&h<w[1])||(h+24>=w[0]&&h+24<w[1]);
-const bucket=r=>{const s=r.samay||'';if(/वर्षा/.test(s))return'Regenseizoen';const w=hw(s);if(w[1]-w[0]>=24)return'Altijd';const m=((w[0]+w[1])/2)%24;return m>=4&&m<12?'Ochtend':m>=12&&m<17?'Middag':m>=17&&m<21?'Avond':'Nacht'};
+const bucket=r=>{const s=r.samay||'';if(/वर्षा/.test(s))return'वर्षा ऋतु';const w=hw(s);if(w[1]-w[0]>=24)return'सर्वकालिक';const m=((w[0]+w[1])/2)%24;return m>=4&&m<12?'प्रातःकाल':m>=12&&m<17?'मध्याह्न':m>=17&&m<21?'सायंकाल':'रात्रि'};
 /* ---------- navigatie ---------- */
 const secs=$$('main>section');
 secs.forEach(s=>{const b=E('button','',s.dataset.t,$('#nav'));b.dataset.s=s.id;b.onclick=()=>go(s.id)});
@@ -107,15 +107,15 @@ document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');g&&g
 /* ---------- home ---------- */
 [[0,'सा'],[2,'रे'],[4,'ग'],[5,'म'],[7,'प'],[9,'ध'],[11,'नि']].forEach(([s,n],i)=>{const t=E('div','tile',`<i>${SL[s]}</i><b>${n}</b>`,$('#ring'));t.style.transform=`rotateY(${i*360/7}deg) translateZ(150px)`;
  t.onclick=()=>{note(s,au().currentTime,1.8,.6);t.classList.add('hot');setTimeout(()=>t.classList.remove('hot'),500)}});
-$('#stats').innerHTML=[[B.raags.length,'Raags'],[B.taals.length,'Taals'],[B.thaats.length,'Thaats'],[12,'Swars'],[24,'Uren']].map(([n,l])=>`<div class="stat"><b>${n}</b>${l}</div>`).join('');
+$('#stats').innerHTML=[[B.raags.length,'राग'],[B.taals.length,'ताल'],[B.thaats.length,'थाट'],[12,'स्वर'],[24,'घंटे']].map(([n,l])=>`<div class="stat"><b>${n}</b>${l}</div>`).join('');
 $('#demo').onclick=()=>openRaag(B.raags.findIndex(r=>r.lat==='Yaman'),true);
 /* ---------- raag-galerij ---------- */
 const uniq=a=>[...new Set(a.filter(Boolean))];
-uniq(B.raags.map(r=>r.thaat)).forEach(v=>$('#fTh').append(new Option(v,v)));uniq(B.raags.map(r=>r.jati)).forEach(v=>$('#fJa').append(new Option(v,v)));['Ochtend','Middag','Avond','Nacht','Altijd','Regenseizoen'].forEach(v=>$('#fTi').append(new Option(v,v)));
+uniq(B.raags.map(r=>r.thaat)).forEach(v=>$('#fTh').append(new Option(v,v)));uniq(B.raags.map(r=>r.jati)).forEach(v=>$('#fJa').append(new Option(v,v)));['प्रातःकाल','मध्याह्न','सायंकाल','रात्रि','सर्वकालिक','वर्षा ऋतु'].forEach(v=>$('#fTi').append(new Option(v,v)));
 function grid(){const q=$('#q').value.trim().toLowerCase(),a=$('#fTh').value,j=$('#fJa').value,t=$('#fTi').value,g=$('#grid');g.innerHTML='';let n=0;
  B.raags.forEach((r,i)=>{if(q&&!(r.name+' '+r.lat+' '+(r.thaat||'')).toLowerCase().includes(q))return;if(a&&r.thaat!==a||j&&r.jati!==j||t&&bucket(r)!==t)return;n++;
-  const c=E('div','card',`<span class="n">${r.n}</span><div class="d">${X(r.name)}</div><div class="l">${X(r.lat)}</div><small>${X(r.thaat)} · ${X(bucket(r))}</small>`,g);c.style.animationDelay=Math.min(n,24)*25+'ms';c.onclick=()=>openRaag(i)});
- $('#cnt').textContent=n+' van '+B.raags.length}
+  const c=E('div','card',`<span class="n">${r.n}</span><div class="d">${X(r.name)}</div><small>${X(r.thaat)} · ${X(bucket(r))}</small>`,g);c.style.animationDelay=Math.min(n,24)*25+'ms';c.onclick=()=>openRaag(i)});
+ $('#cnt').textContent=n+' / '+B.raags.length+' राग'}
 ['#q','#fTh','#fJa','#fTi'].forEach(s=>$(s).addEventListener('input',grid));grid();
 $('#grid').addEventListener('mousemove',e=>{const c=e.target.closest('.card');if(!c)return;const r=c.getBoundingClientRect();c.style.setProperty('--ry',((e.clientX-r.left)/r.width-.5)*18+'deg');c.style.setProperty('--rx',-((e.clientY-r.top)/r.height-.5)*18+'deg');c.style.setProperty('--gx',e.clientX-r.left+'px');c.style.setProperty('--gy',e.clientY-r.top+'px')});
 $('#grid').addEventListener('mouseout',e=>{const c=e.target.closest('.card');if(c){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')}});
@@ -123,10 +123,10 @@ $('#grid').addEventListener('mouseout',e=>{const c=e.target.closest('.card');if(
 let RI=0;
 const VN=[['षड्ज',0],['ऋषभ',2],['रिषभ',2],['गान्धार',4],['गांधार',4],['मध्यम',5],['पंचम',7],['धैवत',9],['निषाद',11]];
 const vpc=v=>{const h=VN.find(x=>(v||'').includes(x[0]));if(!h)return 7;return h[1]-(/कोमल/.test(v)?1:0)+(/तीव्र/.test(v)?1:0)};
-const GL='<p><b>Aroh / Avroh</b> — de opgaande en neergaande toonreeks van de raag.</p><p><b>Vaadi</b> — de belangrijkste toon ("koning"); <b>samvaadi</b> — de tweede belangrijkste toon ("minister").</p><p><b>Pakad</b> — de kenmerkende frasen waaraan je de raag herkent.</p><p><b>Jaati</b> — het aantal tonen in aroh en avroh: sampoorna = 7, shaadav = 6, audav = 5. Bijvoorbeeld "audav-sampoorna" = 5 tonen op, 7 tonen neer.</p><p><b>Varjit</b> — tonen die in de raag weggelaten of vermeden worden.</p><p><b>Samay</b> — de tijd van de dag waarop de raag traditioneel gespeeld wordt.</p><p><b>Thaat</b> — de basisschaal van zeven tonen waaronder raags worden ingedeeld.</p>';
-const THD=['Alle zeven swars zijn shuddha (natuurlijk): vergelijkbaar met de westerse majeurladder.','Zoals Bilawal, maar met tivra Ma (verhoogde vierde): een lichte, verheven klank.','Shuddha Ma met komal Ni (verlaagde zevende): speels en romantisch.','Komal Re en komal Dha: een ernstige, devotionele klank.','Komal Re en komal Dha met tivra Ma: de spanning van de schemering.','Komal Re en tivra Ma met shuddha Dha: onrustig en zwevend; veel raags laten Pa weg.','Komal Ga en komal Ni: zacht en lyrisch.','Komal Ga, Dha en Ni: vergelijkbaar met de westerse natuurlijke mineur.','Komal Re, Ga, Dha en Ni: alle beweegbare swars verlaagd; innig en verstild.','Komal Re, Ga en Dha met tivra Ma: diep en ernstig.'];
-const info=r=>`<p><b>${X(r.lat)}</b> hoort bij de <b class="dev">${X(r.thaat)}</b>-thaat. Type (aroh-avroh): <span class="dev">${X(r.jati)}</span>. Vaadi: <span class="dev">${X(r.vadi)}</span>, samvaadi: <span class="dev">${X(r.samvadi)}</span>. Traditioneel gespeeld in de categorie <b>${bucket(r)}</b> (<span class="dev">${X(r.samay)}</span>).</p>`;
-const taalInfo=t=>{const m=t.vib.map((v,k)=>v?k:-1).filter(k=>k>=0),L=m.map((k,j)=>(m[j+1]??t.beats)-k),kh=t.vib.findIndex(v=>v==='०');return `${X(t.lat)} heeft <b>${t.beats} maatraa's</b>, verdeeld in vibhaags van <b>${L.join(' + ')}</b>. Sam (×) valt op tel 1${kh>=0?`, khaali (०) op tel ${kh+1}`:' (deze taal heeft geen khaali)'}. Klap op de cijfers, zwaai bij de ०.`};
+const GL='<p><b>आरोह / अवरोह</b> — राग की ऊपर जाती तथा नीचे आती स्वर-रचना।</p><p><b>वादी</b> — राग का सर्वप्रमुख स्वर ("राजा"); <b>संवादी</b> — दूसरा प्रमुख स्वर ("मंत्री")।</p><p><b>पकड़</b> — वे विशिष्ट स्वर-समुच्चय जिनसे राग पहचाना जाता है।</p><p><b>जाति</b> — आरोह तथा अवरोह में स्वरों की संख्या: संपूर्ण = ७, षाड़व = ६, औड़व = ५। जैसे "औड़व-संपूर्ण" का अर्थ है आरोह में ५ तथा अवरोह में ७ स्वर।</p><p><b>वर्जित</b> — जो स्वर राग में नहीं लगाए जाते अथवा जिनसे बचा जाता है।</p><p><b>समय</b> — दिन का वह प्रहर जिसमें परंपरा से राग गाया-बजाया जाता है।</p><p><b>थाट</b> — सात स्वरों की मूल स्वर-माला, जिसके अंतर्गत रागों का वर्गीकरण होता है।</p>';
+const THD=['सभी सात स्वर शुद्ध (प्राकृतिक) होते हैं।','बिलावल के समान, किंतु मध्यम तीव्र; भाव उज्ज्वल तथा उदात्त।','शुद्ध मध्यम तथा कोमल निषाद; भाव चंचल एवं शृंगारिक।','कोमल ऋषभ तथा कोमल धैवत; भाव गंभीर एवं भक्तिमय।','कोमल ऋषभ, कोमल धैवत तथा तीव्र मध्यम; संध्या की गहनता।','कोमल ऋषभ तथा तीव्र मध्यम, धैवत शुद्ध; भाव विचलित एवं तरल; अनेक राग पंचम का त्याग करते हैं।','कोमल गान्धार तथा कोमल निषाद; भाव कोमल एवं गीतात्मक।','कोमल गान्धार, कोमल धैवत तथा कोमल निषाद; भाव करुण एवं गंभीर।','कोमल ऋषभ, गान्धार, धैवत तथा निषाद; सभी चल स्वर कोमल; भाव आत्मीय एवं शांत।','कोमल ऋषभ, गान्धार, धैवत तथा तीव्र मध्यम; भाव गहन एवं गंभीर।'];
+const info=r=>`<p>राग <b class="dev">${X(r.name)}</b> <b class="dev">${X(r.thaat)}</b> थाट से संबद्ध है। जाति (आरोह-अवरोह): <span class="dev">${X(r.jati)}</span>। वादी: <span class="dev">${X(r.vadi)}</span>, संवादी: <span class="dev">${X(r.samvadi)}</span>। परंपरा से इसका समय: <b>${bucket(r)}</b> (<span class="dev">${X(r.samay)}</span>)।</p>`;
+const taalInfo=t=>{const m=t.vib.map((v,k)=>v?k:-1).filter(k=>k>=0),L=m.map((k,j)=>(m[j+1]??t.beats)-k),kh=t.vib.findIndex(v=>v==='०');return `${X(t.name)} में <b>${t.beats} मात्राएँ</b> हैं, जो <b>${L.join(' + ')}</b> के विभागों में बँटी हैं। सम (×) पहली मात्रा पर आता है${kh>=0?`, तथा रिक्त (०) ${kh+1}वीं मात्रा पर`:' (इस ताल में रिक्त नहीं है)'}। अंकों पर ताली दीजिए और ० पर हाथ घुमाइए।`};
 function genImp(r){const pc=[...pcs(r)];if(!pc.length)pc.push(0,2,4,5,7,9,11);const sc=[];[-12,0,12].forEach(o=>pc.forEach(p=>sc.push(p+o)));sc.sort((a,b)=>a-b);
  const rnd=n=>Math.random()*n|0,V=((vpc(r.vadi)%12)+12)%12,g=[],add=(n,len)=>{g.push({n,len});for(let i=1;i<len;i++)g.push(null)},cl=j=>sc[Math.max(0,Math.min(sc.length-1,j))],base=Math.max(0,sc.indexOf(0));
  pak(r.pakad||'').forEach(n=>n==null?add(null,2):add(n,3));add(0,4);
@@ -136,16 +136,16 @@ function genImp(r){const pc=[...pcs(r)];if(!pc.length)pc.push(0,2,4,5,7,9,11);co
  add(0,6);while(g.length%32)g.push(null);return g}
 function openRaag(i,auto){stopAll();RI=i=(i+B.raags.length)%B.raags.length;const r=B.raags[i],m=$('#modal');m.classList.add('on');
  const P=(l,k)=>r[k]?`<div class="nt"><b>${l}</b><span>${X(r[k])}</span><button class="btn" data-p="${k}">▶</button></div>`:'';
- const att=[['Thaat','thaat'],['Swars','swar'],['Vaadi','vadi'],['Samvaadi','samvadi'],['Varjit','varjit'],['Jaati','jati'],['Samay','samay']].filter(a=>r[a[1]]).map(a=>`<tr><td>${a[0]}</td><td class="dev">${X(r[a[1]])}</td></tr>`).join('');
- m.innerHTML=`<div class="sheet"><button class="x" title="Sluiten">×</button>
- <div class="row"><button class="btn" data-n="-1">◀</button><span class="muted">Raag ${r.n} / ${B.raags.length}</span><button class="btn" data-n="1">▶</button></div>
- <h2>राग ${X(r.name)}</h2><h3>${X(r.lat)}</h3><div><span class="badge">${X(r.thaat)} thaat</span><span class="badge">${X(r.jati)}</span><span class="badge">${X(bucket(r))}</span></div>
- <div class="cols"><div><div class="scroll"><table>${att}</table></div>${P('Aroh','aroh')}${P('Avroh','avroh')}${P('Pakad','pakad')}
- <div class="row"><button class="btn gold" data-p="both">▶ Aroh + Avroh</button><label>Tempo <input id="nBpm" type="range" min="40" max="300" value="130"></label></div></div><div>${wheel(pcs(r))}</div></div>
+ const att=[['थाट','thaat'],['स्वर','swar'],['वादी','vadi'],['संवादी','samvadi'],['वर्जित','varjit'],['जाति','jati'],['समय','samay']].filter(a=>r[a[1]]).map(a=>`<tr><td>${a[0]}</td><td class="dev">${X(r[a[1]])}</td></tr>`).join('');
+ m.innerHTML=`<div class="sheet"><button class="x" title="बंद कीजिए">×</button>
+ <div class="row"><button class="btn" data-n="-1">◀</button><span class="muted">राग ${r.n} / ${B.raags.length}</span><button class="btn" data-n="1">▶</button></div>
+ <h2>राग ${X(r.name)}</h2><div><span class="badge">${X(r.thaat)} थाट</span><span class="badge">${X(r.jati)}</span><span class="badge">${X(bucket(r))}</span></div>
+ <div class="cols"><div><div class="scroll"><table>${att}</table></div>${P('आरोह','aroh')}${P('अवरोह','avroh')}${P('पकड़','pakad')}
+ <div class="row"><button class="btn gold" data-p="both">▶ आरोह + अवरोह</button><label>गति <input id="nBpm" type="range" min="40" max="300" value="130"></label></div></div><div>${wheel(pcs(r))}</div></div>
  ${info(r)}
- <h3>Improvisatie in Teentaal</h3><p class="muted">Telkens een nieuwe, korte improvisatie in deze raag: eerst een rustige alaap op basis van de pakad, daarna snelle taans, met tabla.</p>
- <div class="row"><button class="btn gold" id="iP">▶ Speel improvisatie</button><button class="btn" id="iN">↻ Nieuwe variatie</button><label>Tempo <input id="iB" type="range" min="50" max="240" value="110"><b id="iBv"></b></label><label><input type="checkbox" id="iT" checked> Tabla</label></div>
- <details><summary>Wat betekenen deze termen?</summary>${GL}</details></div>`;
+ <h3>तीनताल में आलाप एवं तान</h3><p class="muted">हर बार नई, छोटी सुर-रचना: पहले पकड़ पर आधारित धीमा आलाप, फिर द्रुत तानें, ताल-वाद्य के साथ।</p>
+ <div class="row"><button class="btn gold" id="iP">▶ बजाएँ</button><button class="btn" id="iN">↻ नया रूप</button><label>गति <input id="iB" type="range" min="50" max="240" value="110"><b id="iBv"></b></label><label><input type="checkbox" id="iT" checked> ताल-वाद्य</label></div>
+ <details><summary>इन शब्दों का अर्थ</summary>${GL}</details></div>`;
  const sh=m.firstChild,ib=$('#iB');let G=genImp(r);ib.oninput=()=>$('#iBv').textContent=ib.value;ib.oninput();
  const playI=()=>{stopAll();const tl=B.taals.find(t=>t.name==='तीनताल');run(k=>k<G.length?{dur:60/ib.value/2,g:G[k],fn:t=>{const x=G[k],bd=60/ib.value;if(x&&x.n!=null)note(x.n,t,x.len*bd/2*1.02,.5);if(k%2===0&&$('#iT').checked&&tl)tb(tl.bols[(k/2)%tl.beats],t,bd)}}:null,(k,s)=>hot(s.g&&s.g.n),()=>hot())};
  $('#iP').onclick=playI;$('#iN').onclick=()=>{G=genImp(r);playI()};auto&&setTimeout(playI,300);
@@ -159,26 +159,26 @@ let TI=0,taalOn=false;
 function taalSel(i){stopAll();TI=i;const t=B.taals[i],ring=$('#taalRing'),n=t.beats,rad=Math.max(130,n*24);$$('#taalChips .chip').forEach((c,j)=>c.classList.toggle('on',j===i));
  ring.innerHTML='';ring.dataset.n=n;ring.dataset.r=rad;ring.style.transform=`translateZ(-${rad}px)`;
  for(let k=0;k<n;k++){const v=t.vib[k]||'',d=E('div','tile'+(v==='×'?' sam':v==='०'?' khali':''),`<i>${k+1}${v?' · '+v:''}</i><b style="font-size:${t.bols[k].length>3?18:26}px">${X(t.bols[k])}</b>`,ring);d.style.transform=`rotateY(${k*360/n}deg) translateZ(${rad}px)`;d.onclick=()=>{tb(t.bols[k],au().currentTime,60/$('#tBpm').value,+$('#tVol').value);hitD(t.bols[k])}}
- $('#taalInfo').innerHTML=`<h3 class="dev">${X(t.name)} · ${X(t.lat)} — ${n} maatraa's</h3><p>${taalInfo(t)}</p><p class="muted">× = sam (eerste tel), cijfer = taali, ० = khaali (stille handzwaai).</p>`;
+ $('#taalInfo').innerHTML=`<h3 class="dev">${X(t.name)} — ${n} मात्राएँ</h3><p>${taalInfo(t)}</p><p class="muted">× = सम (प्रथम मात्रा), अंक = ताली, ० = रिक्त (हाथ घुमाना)।</p>`;
  $('#taalTbl').innerHTML=`<table class="dev"><tr><td>मात्रा</td>${t.bols.map((_,k)=>`<td>${k+1}</td>`).join('')}</tr><tr><td>विभाग</td>${t.bols.map((_,k)=>`<td>${X(t.vib[k]||'')}</td>`).join('')}</tr><tr><td>बोल</td>${t.bols.map(b=>`<td>${X(b)}</td>`).join('')}</tr></table>`}
 B.taals.forEach((t,i)=>{const c=E('span','chip',`${X(t.name)} <small>${t.beats}</small>`,$('#taalChips'));c.onclick=()=>taalSel(i)});
 $('#tBpm').oninput=()=>$('#tBpmV').textContent=$('#tBpm').value;$('#tBpm').oninput();
-$('#tPlay').onclick=()=>{if(taalOn){stopAll();return}stopAll();taalOn=true;$('#tPlay').textContent='■ Stop';const t=B.taals[TI],ring=$('#taalRing');
+$('#tPlay').onclick=()=>{if(taalOn){stopAll();return}stopAll();taalOn=true;$('#tPlay').textContent='■ रोकें';const t=B.taals[TI],ring=$('#taalRing');
  run(i=>{const bd=60/($('#tBpm').value*$('#tLaya').value);return{dur:bd,fn:tt=>tb(t.bols[i%t.beats],tt,bd,+$('#tVol').value)}},i=>{const n=t.beats;ring.style.transform=`translateZ(-${ring.dataset.r}px) rotateY(${-i*360/n}deg)`;[...ring.children].forEach((c,j)=>c.classList.toggle('hot',j===i%n));hitD(t.bols[i%n])})};
 taalSel(0);
 /* ---------- swar-lab ---------- */
 const KM='asdfghjkl',KS=[0,2,4,5,7,9,11,12,14];
 function keyP(s,e){note(s,au().currentTime,1.4,.55);e&&(e.classList.add('hot'),setTimeout(()=>e.classList.remove('hot'),180))}
 SW.forEach((n,i)=>{const k=E('div','key'+([1,3,6,8,10].includes(i)?' k':''),`${n}<small>${SL[i]}</small><small class="rt"></small>`,$('#keys'));k.dataset.i=i;k.style.animationDelay=-i*.4+'s';k.onclick=()=>keyP(i,k)});
-const upd=()=>{A.eq=+$('#eq').value;$('#eqV').textContent=Math.round(A.eq*100)+'%';$$('#keys .key').forEach((k,i)=>{const c=Math.round(1200*Math.log2(ratio(i)))-i*100;k.querySelector('.rt').textContent=(c>0?'+':'')+c+'¢'})};$('#eq').oninput=upd;upd();
+const upd=()=>{A.eq=+$('#eq').value;$('#eqV').textContent=Math.round(A.eq*100)+' प्रतिशत';$$('#keys .key').forEach((k,i)=>{const c=Math.round(1200*Math.log2(ratio(i)))-i*100;k.querySelector('.rt').textContent=(c>0?'+':'')+c})};$('#eq').oninput=upd;upd();
 const TS={'बिलावल':[0,2,4,5,7,9,11],'कल्याण':[0,2,4,6,7,9,11],'खमाज':[0,2,4,5,7,9,10],'भैरव':[0,1,4,5,7,8,11],'पूर्वी':[0,1,4,6,7,8,11],'मारवा':[0,1,4,6,7,9,11],'काफी':[0,2,3,5,7,9,10],'आसावरी':[0,2,3,5,7,8,10],'भैरवी':[0,1,3,5,7,8,10],'तोड़ी':[0,1,3,6,7,8,11]};
 let THI=0;
 function thSel(i){THI=i;const t=B.thaats[i],sc=Object.values(TS)[i];$$('#thChips .chip').forEach((c,j)=>c.classList.toggle('on',j===i));
- $$('#keys .key').forEach((k,j)=>k.classList.toggle('dim',!sc.includes(j)));$('#thInfo').innerHTML=`<p class="dev"><b>${X(t.name)} (${X(t.lat)}):</b> ${sc.map(s=>X(SW[s])).join(' ')}</p><p>${THD[i]}</p>`}
+ $$('#keys .key').forEach((k,j)=>k.classList.toggle('dim',!sc.includes(j)));$('#thInfo').innerHTML=`<p class="dev"><b>${X(t.name)}:</b> ${sc.map(s=>X(SW[s])).join(' ')}</p><p>${THD[i]}</p>`}
 B.thaats.forEach((t,i)=>{const c=E('span','chip',X(t.name),$('#thChips'));c.onclick=()=>thSel(i)});thSel(0);
 const thP=a=>{stopAll();const sc=Object.values(TS)[THI],s=[...sc,12],bp=+$('#thBpm').value;seq(a?s:[...s].reverse(),bp)};$('#thUp').onclick=()=>thP(1);$('#thDn').onclick=()=>thP(0);
-$('#beat').onclick=()=>{if($('#beat').textContent.includes('■'))return stopAll();stopAll();const c=au(),o1=c.createOscillator(),o2=c.createOscillator(),g=c.createGain();o1.frequency.value=A.sa*2;o2.frequency.value=A.sa*3;o2.detune.value=+$('#det').value;g.gain.value=.14;o1.connect(g);o2.connect(g);g.connect(A.b);o1.start();o2.start();A.o2=o2;$('#beat').textContent='■ Stop';stoppers.push(()=>{try{o1.stop();o2.stop()}catch(e){}A.o2=null})};
-$('#det').oninput=()=>{$('#detV').textContent=$('#det').value+'¢';A.o2&&(A.o2.detune.value=+$('#det').value)};
+$('#beat').onclick=()=>{if($('#beat').textContent.includes('■'))return stopAll();stopAll();const c=au(),o1=c.createOscillator(),o2=c.createOscillator(),g=c.createGain();o1.frequency.value=A.sa*2;o2.frequency.value=A.sa*3;o2.detune.value=+$('#det').value;g.gain.value=.14;o1.connect(g);o2.connect(g);g.connect(A.b);o1.start();o2.start();A.o2=o2;$('#beat').textContent='■ रोकें';stoppers.push(()=>{try{o1.stop();o2.stop()}catch(e){}A.o2=null})};
+$('#det').oninput=()=>{$('#detV').textContent=$('#det').value+' सूक्ष्मांश';A.o2&&(A.o2.detune.value=+$('#det').value)};
 addEventListener('keydown',e=>{if(e.key==='Escape')return closeM();if(!$('#lab').classList.contains('on')||/INPUT|SELECT/.test(e.target.tagName)||e.repeat)return;const k=KM.indexOf(e.key);if(k>-1){const s=KS[k],el=$(`#keys .key[data-i="${s%12}"]`);keyP(s,s<12?el:null)}});
 /* ---------- dagklok ---------- */
 const SKY=[[0,[10,16,48]],[5,[26,42,90]],[6.5,[212,106,58]],[9,[74,154,224]],[15,[58,143,216]],[18,[224,102,58]],[19.5,[106,26,74]],[21,[10,16,48]],[24,[10,16,48]]];
@@ -186,21 +186,21 @@ const sky=h=>{let i=SKY.findIndex(s=>s[0]>h);if(i<1)i=1;const a=SKY[i-1],b=SKY[i
 let CL=[];const skyset=h=>{$('#dial').style.setProperty('--sky',sky(h));$('#dial').style.setProperty('--nt',Math.max(0,Math.min(1,h<5?1:h<7?(7-h)/2:h>21?1:h>19?(h-19)/2:0)))};
 Array.from({length:30},()=>{const u=E('u','',null,$('#dial'));u.style.left=Math.random()*88+6+'%';u.style.top=Math.random()*88+6+'%';u.style.animationDelay=Math.random()*3+'s'});
 function clock(){const h=+$('#hr').value%24,hh=Math.floor(h),mm=Math.round((h-hh)*60);$('#tm').textContent=String(hh).padStart(2,'0')+':'+String(mm).padStart(2,'0');$('#hand').style.transform=`rotate(${(h-12)/24*360}deg)`;skyset(h);
- const g=$('#clkList');g.innerHTML='';CL=B.raags.map((r,i)=>({r,i,w:hw(r.samay||'')})).filter(x=>x.w[1]-x.w[0]<24&&inWin(h,x.w));CL.forEach(x=>{const c=E('div','card',`<div class="d">${X(x.r.name)}</div><div class="l">${X(x.r.lat)}</div><small>${X(x.r.samay)}</small>`,g);c.onclick=()=>openRaag(x.i)});if(!CL.length)g.innerHTML='<p class="muted c">Geen raag met een vast uur — probeer een ander tijdstip.</p>'}
+ const g=$('#clkList');g.innerHTML='';CL=B.raags.map((r,i)=>({r,i,w:hw(r.samay||'')})).filter(x=>x.w[1]-x.w[0]<24&&inWin(h,x.w));CL.forEach(x=>{const c=E('div','card',`<div class="d">${X(x.r.name)}</div><small>${X(x.r.samay)}</small>`,g);c.onclick=()=>openRaag(x.i)});if(!CL.length)g.innerHTML='<p class="muted c">इस समय के लिए कोई निश्चित राग नहीं है — कोई अन्य समय चुनिए।</p>'}
 $('#hr').oninput=clock;clock();let dayOn=false;
-$('#run').onclick=()=>{dayOn=!dayOn;$('#run').textContent=dayOn?'■ Stop de dag':'▶ Laat de dag lopen';let l=0;const f=t=>{if(!dayOn)return;if(t-l>60){l=t;$('#hr').value=(+$('#hr').value+.05)%24;if(+$('#hr').value*20%10<.5)clock();else{const h=+$('#hr').value;$('#hand').style.transform=`rotate(${(h-12)/24*360}deg)`;skyset(h)}}requestAnimationFrame(f)};requestAnimationFrame(f)};
+$('#run').onclick=()=>{dayOn=!dayOn;$('#run').textContent=dayOn?'■ दिन रोकिए':'▶ दिन चलाइए';let l=0;const f=t=>{if(!dayOn)return;if(t-l>60){l=t;$('#hr').value=(+$('#hr').value+.05)%24;if(+$('#hr').value*20%10<.5)clock();else{const h=+$('#hr').value;$('#hand').style.transform=`rotate(${(h-12)/24*360}deg)`;skyset(h)}}requestAnimationFrame(f)};requestAnimationFrame(f)};
 $('#rnd').onclick=()=>{if(!CL.length)return;stopAll();const x=CL[Math.random()*CL.length|0];seq(pak(x.r.pakad),150)};
 /* ---------- leren ---------- */
-let deck=[['Raag','Een melodisch kader met een vaste toonvolgorde (aroh/avroh), sleuteltonen en een eigen sfeer.'],['Aroh / Avroh','De opgaande en neergaande toonreeks van een raag.'],['Vaadi','De belangrijkste toon van de raag (de "koning").'],['Samvaadi','De tweede belangrijkste toon (de "minister"), vaak een kwint of kwart van de vaadi.'],['Pakad','De kenmerkende frasen waaraan je een raag herkent.'],['Thaat','Een basisschaal van zeven tonen waaronder raags worden ingedeeld; er zijn tien thaats.'],['Jaati','Het aantal tonen in aroh en avroh: 5 (audav), 6 (shaadav) of 7 (sampoorna).'],['Swar','Een toon: Sa Re Ga Ma Pa Dha Ni.'],['Komal / Tivra','Komal = verlaagd (Re, Ga, Dha, Ni); tivra = verhoogd (alleen Ma).'],['Taal','Een cyclisch ritme met een vaste telling (maatraa\'s) en indeling in vibhaags.'],['Sam, taali, khaali','Sam = eerste tel (nadruk), taali = klap, khaali = lege handzwaai.'],['Theka','Het basispatroon van bols op de tabla voor een taal.'],['Laya','Het tempo: vilambit (langzaam), madhya (midden), drut (snel).'],['Tanpura','Snaarinstrument dat de drone speelt, meestal op Sa en Pa.'],['Samay','De tijd van de dag waarop een raag traditioneel wordt gespeeld.'],['Shruti','De fijnere toonafstanden binnen een octaaf; klassiek spreekt men van 22 shruti\'s.']],DI=0;
+let deck=[['राग','निश्चित स्वर-क्रम (आरोह-अवरोह), प्रमुख स्वरों तथा अपने विशिष्ट भाव वाली स्वर-रचना का ढाँचा।'],['आरोह / अवरोह','राग की ऊपर जाती तथा नीचे आती स्वर-रचना।'],['वादी','राग का सर्वप्रमुख स्वर ("राजा")।'],['संवादी','दूसरा प्रमुख स्वर ("मंत्री"), प्रायः वादी से पंचम अथवा मध्यम के अंतर पर।'],['पकड़','वे विशिष्ट स्वर-समुच्चय जिनसे राग पहचाना जाता है।'],['थाट','सात स्वरों की मूल स्वर-माला जिसके अंतर्गत रागों का वर्गीकरण होता है; थाट दस हैं।'],['जाति','आरोह-अवरोह में स्वरों की संख्या: ५ (औड़व), ६ (षाड़व) अथवा ७ (संपूर्ण)।'],['स्वर','सा रे ग म प ध नि — सप्तक के सात मूल स्वर।'],['कोमल / तीव्र','कोमल = उतरा हुआ (रे, ग, ध, नि); तीव्र = चढ़ा हुआ (केवल म)।'],['ताल','निश्चित मात्राओं तथा विभागों वाला चक्रीय लय-ढाँचा।'],['सम, ताली, रिक्त','सम = प्रथम मात्रा (बल); ताली = हाथ की थाप; रिक्त = हाथ घुमाना।'],['ठेका','किसी ताल के बोलों का मूल क्रम।'],['लय','गति का स्तर: विलंबित (धीमी), मध्य, द्रुत (तीव्र)।'],['तानपूरा','वह तंत्रवाद्य जो षड्ज तथा पंचम का आधार-स्वर निरंतर देता है।'],['समय','दिन का वह प्रहर जिसमें राग परंपरा से प्रस्तुत किया जाता है।'],['श्रुति','सप्तक के भीतर सूक्ष्म स्वर-अंतर; परंपरा में २२ श्रुतियाँ मानी गई हैं।']],DI=0;
 const card=()=>{$('#flip').classList.remove('on');const d=deck[DI];$('#ff').textContent=d[0];$('#fb').textContent=d[1];$('#fn').textContent=(DI+1)+' / '+deck.length};
 $('#flip').onclick=()=>$('#flip').classList.toggle('on');$('#fp').onclick=()=>{DI=(DI-1+deck.length)%deck.length;card()};$('#fx').onclick=()=>{DI=(DI+1)%deck.length;card()};
 $('#fs').onclick=()=>{deck.sort(()=>Math.random()-.5);DI=0;card()};card();
 let QR=null,qs=0,qn=0;
 function quiz(){const p=B.raags.filter(r=>r.pakad),r=p[Math.random()*p.length|0],o=[r];while(o.length<4){const x=p[Math.random()*p.length|0];if(!o.includes(x))o.push(x)}o.sort(()=>Math.random()-.5);QR=r;$('#qOpt').innerHTML='';
- o.forEach(x=>{const b=E('button','btn',`${X(x.name)} · ${X(x.lat)}`,$('#qOpt'));b.onclick=()=>{if(QR.done)return;QR.done=1;qn++;x===r?(qs++,b.classList.add('ok')):(b.classList.add('no'),[...$('#qOpt').children].forEach(c=>c.textContent.startsWith(r.name)&&c.classList.add('ok')));$('#qScore').textContent=`Score ${qs} / ${qn}`}});delete r.done;$('#qPlay').click()}
+ o.forEach(x=>{const b=E('button','btn',X(x.name),$('#qOpt'));b.onclick=()=>{if(QR.done)return;QR.done=1;qn++;x===r?(qs++,b.classList.add('ok')):(b.classList.add('no'),[...$('#qOpt').children].forEach(c=>c.textContent.startsWith(r.name)&&c.classList.add('ok')));$('#qScore').textContent=`प्राप्तांक ${qs} / ${qn}`}});delete r.done;$('#qPlay').click()}
 $('#qPlay').onclick=()=>{if(!QR)return quiz();stopAll();seq(pak(QR.pakad),150)};$('#qNext').onclick=quiz;
 /* ---------- globale balk & achtergrond ---------- */
-$('#sa').oninput=()=>{A.sa=+$('#sa').value;$('#saV').textContent=A.sa+' Hz · '+saName()};$('#sa').oninput();
+$('#sa').oninput=()=>{A.sa=+$('#sa').value;$('#saV').textContent=A.sa};$('#sa').oninput();
 $('#vol').oninput=()=>{A.vol=+$('#vol').value;A.m&&(A.m.gain.value=A.vol)};$('#rev').oninput=()=>{A.rev=+$('#rev').value;A.w&&(A.w.gain.value=A.rev)};$('#inst').onchange=()=>A.inst=$('#inst').value;
 $('#drone').onclick=()=>{A.drone=!A.drone;$('#drone').classList.toggle('act',A.drone);clearInterval(A.dt);if(A.drone){au();dr();A.dt=setInterval(dr,3400)}};$('#stop').onclick=stopAll;
 let SP=[];const burst=(a,b)=>{for(let i=0;i<24;i++){const g=Math.random()*6.28,v=1+Math.random()*3.5;SP.push({x:a,y:b,vx:Math.cos(g)*v,vy:Math.sin(g)*v-1.5,l:1})}};
@@ -219,3 +219,7 @@ addEventListener('pointermove',e=>{const r=document.documentElement.style;r.setP
   if($('#home').classList.contains('on'))EQ.forEach((e,i)=>{const v=l>.002?d[2+(i*2)%60]/255:0;e.style.transform=`rotateY(${i*15}deg) translateZ(100px) scaleY(${(.18+.12*Math.sin(t*2+i*.5)+v*1.4).toFixed(3)})`});
   P.forEach(o=>{o.y-=.0003*o.z*(1+l*8);if(o.y<-.02){o.y=1.02;o.x=Math.random()}const px=(o.x+Math.sin(t+o.p)*.02)*W,py=o.y*H,r=o.z*2.2*(1+l*2.5),g=x.createRadialGradient(px,py,0,px,py,r*5);g.addColorStop(0,`rgba(246,227,161,${.55*o.z})`);g.addColorStop(1,'rgba(246,227,161,0)');x.fillStyle=g;x.beginPath();x.arc(px,py,r*5,0,7);x.fill()});requestAnimationFrame(f)})()})();
 go(location.hash.slice(1)||'home');
+
+/* अंकों को देवनागरी रूप में दिखाना */
+const DD=t=>t.replace(/\d/g,d=>'०१२३४५६७८९'[d]),cvn=n=>{if(n.nodeType===3){if(/\d/.test(n.data))n.data=DD(n.data)}else if(n.nodeType===1&&!/^(SCRIPT|STYLE|INPUT|TEXTAREA)$/.test(n.tagName))n.childNodes.forEach(cvn)};
+new MutationObserver(ms=>ms.forEach(m=>{m.addedNodes.forEach(cvn);if(m.type==='characterData')cvn(m.target)})).observe(document.body,{childList:true,subtree:true,characterData:true});cvn(document.body);

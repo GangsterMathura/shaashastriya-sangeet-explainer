@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="hi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>शास्त्रीय संगीत · Raags &amp; Taals</title>
-<meta name="description" content="Ontdek raags en taals van de Hindoestaanse klassieke muziek: geluid, sliders en 3D.">
+<title>शास्त्रीय संगीत · राग एवं ताल</title>
+<meta name="description" content="भारतीय शास्त्रीय संगीत के राग एवं ताल की खोज: ध्वनि, स्वर-पट्टियाँ और त्रिविम दृश्य।">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
@@ -15,35 +15,35 @@
 <canvas id="bg"></canvas><div id="glow"></div>
 <header><b class="logo">॥ नाद ॥</b><nav id="nav"></nav></header>
 <main>
-  <section id="home" data-t="Start">
+  <section id="home" data-t="मुखपृष्ठ">
     <div class="stage"><div class="ring" id="ring"><div class="armil"><i></i><i></i><i></i><i></i><span class="core"></span></div><div class="eqr" id="eqr"></div></div></div>
     <h1 class="dev"><span>शास्त्रीय</span> <span style="animation-delay:.3s,0s">संगीत</span></h1>
-    <p class="sub">Van klank tot raag · Raags &amp; Taals</p>
-    <p class="lead">Ontdek en hoor de <b>raags</b> van de Hindoestaanse klassieke muziek en de <b>taals</b> op tabla. Speel met stemming, tijd van de dag en toonladders. Klik op een swar in de ring om hem te horen.</p>
-    <div class="row c"><button class="btn gold" data-go="raags">Ontdek de raags</button><button class="btn" id="demo">▶ Hoor raag Yaman</button><button class="btn" data-go="taals">Taals &amp; tabla</button></div>
+    <p class="sub">ध्वनि से राग तक · राग एवं ताल</p>
+    <p class="lead">भारतीय शास्त्रीय संगीत के रागों का परिचय पाइए और उन्हें सुनिए; ताल-वाद्य पर तालों के ठेके सुनिए। स्वर-व्यवस्था, दिन के प्रहर तथा थाटों के साथ प्रयोग कीजिए। किसी स्वर को सुनने के लिए घेरे में उस पर दबाइए।</p>
+    <div class="row c"><button class="btn gold" data-go="raags">रागों की खोज</button><button class="btn" id="demo">▶ राग यमन सुनें</button><button class="btn" data-go="taals">ताल एवं ताल-वाद्य</button></div>
     <div class="stats" id="stats"></div>
   </section>
 
-  <section id="raags" data-t="Raags">
-    <h2>Raag-galerij</h2>
+  <section id="raags" data-t="राग">
+    <h2>राग-दीर्घा</h2>
     <div class="tools">
-      <input id="q" type="search" placeholder="Zoek raag (Devanagari of Latijn)…">
-      <select id="fTh"><option value="">Alle thaats</option></select>
-      <select id="fJa"><option value="">Alle jaatis</option></select>
-      <select id="fTi"><option value="">Alle tijden</option></select>
+      <input id="q" type="search" placeholder="राग खोजिए…">
+      <select id="fTh"><option value="">सभी थाट</option></select>
+      <select id="fJa"><option value="">सभी जाति</option></select>
+      <select id="fTi"><option value="">सभी समय</option></select>
       <span id="cnt" class="muted"></span>
     </div>
     <div id="grid" class="grid"></div>
   </section>
 
-  <section id="taals" data-t="Taals">
-    <h2>Taal-laboratorium</h2>
+  <section id="taals" data-t="ताल">
+    <h2>ताल-प्रयोगशाला</h2>
     <div class="chips" id="taalChips"></div>
     <div class="panel row">
-      <button class="btn gold" id="tPlay">▶ Speel theka</button>
-      <label>Tempo <input id="tBpm" type="range" min="40" max="260" value="110"><b id="tBpmV"></b></label>
-      <label>Laya <select id="tLaya"><option value=".5">Vilambit (½×)</option><option value="1" selected>Madhya (1×)</option><option value="2">Drut (2×)</option></select></label>
-      <label>Tabla-volume <input id="tVol" type="range" min="0" max="1" step=".05" value=".9"></label>
+      <button class="btn gold" id="tPlay">▶ ठेका बजाएँ</button>
+      <label>गति <input id="tBpm" type="range" min="40" max="260" value="110"><b id="tBpmV"></b></label>
+      <label>लय <select id="tLaya"><option value=".5">विलंबित (आधी गति)</option><option value="1" selected>मध्य (सामान्य)</option><option value="2">द्रुत (दुगुनी)</option></select></label>
+      <label>ताल-वाद्य ध्वनि <input id="tVol" type="range" min="0" max="1" step=".05" value=".9"></label>
     </div>
     <div class="drums"><div class="drum d" id="dDay"><div class="sp"></div></div><div class="drum b" id="dBay"><div class="sp"></div></div></div>
     <div class="stage"><div class="ring big" id="taalRing"></div></div>
@@ -51,50 +51,49 @@
     <div id="taalTbl" class="scroll"></div>
   </section>
 
-  <section id="lab" data-t="Swar-lab">
-    <h2>Swar-lab</h2>
-    <div class="panel"><h3>De twaalf swars</h3>
-      <p class="muted">Klik of gebruik toetsen <kbd>A S D F G H J K L</kbd>. De slider verandert de stemming tussen <b>zuivere verhoudingen</b> (zoals in de shruti-leer) en <b>gelijkzwevend</b> (piano).</p>
+  <section id="lab" data-t="स्वर-प्रयोगशाला">
+    <h2>स्वर-प्रयोगशाला</h2>
+    <div class="panel"><h3>बारह स्वर</h3>
+      <p class="muted">किसी कुंजी पर दबाइए, अथवा कुंजीपटल की मध्य पंक्ति की कुंजियाँ प्रयोग कीजिए। नीचे की पट्टी से स्वर-व्यवस्था बदलिए: <b>शुद्ध अनुपात</b> (श्रुति-परंपरा) से <b>समान अंतराल</b> तक। कुंजी के नीचे की संख्या समान अंतराल से सूक्ष्मांशों में अंतर दर्शाती है।</p>
       <div class="keys" id="keys"></div>
-      <label class="wide">Stemming: zuiver ◂ <input id="eq" type="range" min="0" max="1" step=".01" value="0"> ▸ gelijkzwevend <b id="eqV"></b></label>
+      <label class="wide">स्वर-व्यवस्था: शुद्ध ◂ <input id="eq" type="range" min="0" max="1" step=".01" value="0"> ▸ समान अंतराल <b id="eqV"></b></label>
     </div>
-    <div class="panel"><h3>De tien thaats</h3><div class="chips" id="thChips"></div><div id="thInfo"></div>
-      <div class="row"><button class="btn" id="thUp">▶ Aroh</button><button class="btn" id="thDn">▶ Avroh</button><label>Snelheid <input id="thBpm" type="range" min="60" max="300" value="150"></label></div>
+    <div class="panel"><h3>दस थाट</h3><div class="chips" id="thChips"></div><div id="thInfo"></div>
+      <div class="row"><button class="btn" id="thUp">▶ आरोह</button><button class="btn" id="thDn">▶ अवरोह</button><label>गति <input id="thBpm" type="range" min="60" max="300" value="150"></label></div>
     </div>
-    <div class="panel"><h3>Zweving: Sa + Pa</h3>
-      <p class="muted">Verstem de Pa een beetje en hoor de trilling (zweving). Zuivere kwint = geen zweving.</p>
-      <div class="row"><button class="btn" id="beat">▶ Start</button><label>Verstemming <input id="det" type="range" min="-40" max="40" value="0"><b id="detV"></b></label></div>
+    <div class="panel"><h3>स्वराघात: षड्ज + पंचम</h3>
+      <p class="muted">पंचम को थोड़ा विचलित कीजिए और स्वरों का परस्पर कंपन (विस्पंद) सुनिए। शुद्ध पंचम में विस्पंद नहीं होता।</p>
+      <div class="row"><button class="btn" id="beat">▶ आरंभ</button><label>विचलन <input id="det" type="range" min="-40" max="40" value="0"><b id="detV"></b></label></div>
     </div>
   </section>
 
-  <section id="clock" data-t="Dagklok">
-    <h2>Samay — de raag-klok</h2>
-    <p class="muted c">Elke raag heeft zijn tijd. Sleep de zon of start de dag.</p>
+  <section id="clock" data-t="प्रहर-घड़ी">
+    <h2>समय — राग-घड़ी</h2>
+    <p class="muted c">प्रत्येक राग का अपना समय होता है। सूर्य को खिसकाइए अथवा दिन चलाइए।</p>
     <div class="dial" id="dial"><div class="hand" id="hand"></div><div class="sun"></div><b id="tm"></b></div>
-    <div class="row c"><input id="hr" type="range" min="0" max="24" step=".25" value="6" style="width:min(520px,90%)"><button class="btn" id="run">▶ Laat de dag lopen</button><button class="btn gold" id="rnd">♪ Speel een raag van dit uur</button></div>
+    <div class="row c"><input id="hr" type="range" min="0" max="24" step=".25" value="6" style="width:min(520px,90%)"><button class="btn" id="run">▶ दिन चलाइए</button><button class="btn gold" id="rnd">♪ इस प्रहर का राग सुनें</button></div>
     <div id="clkList" class="grid sm"></div>
   </section>
 
-  <section id="cards" data-t="Leren">
-    <h2>Flashcards &amp; quiz</h2>
+  <section id="cards" data-t="अध्ययन">
+    <h2>स्मरण-पत्र एवं प्रश्नोत्तरी</h2>
     <div class="row c"><div class="flip" id="flip"><div class="fc"><div class="face f" id="ff"></div><div class="face b" id="fb"></div></div></div></div>
-    <div class="row c"><button class="btn" id="fp">◀</button><span id="fn" class="muted"></span><button class="btn" id="fx">▶</button><button class="btn" id="fs">⇄ Husselen</button></div>
-    <div class="panel"><h3>Raad de raag</h3><p class="muted">Luister naar de pakad en kies de juiste raag.</p>
-      <div class="row"><button class="btn gold" id="qPlay">▶ Luister</button><button class="btn" id="qNext">Nieuwe vraag</button><b id="qScore"></b></div>
+    <div class="row c"><button class="btn" id="fp">◀</button><span id="fn" class="muted"></span><button class="btn" id="fx">▶</button><button class="btn" id="fs">⇄ क्रम बदलिए</button></div>
+    <div class="panel"><h3>राग पहचानिए</h3><p class="muted">राग की पकड़ सुनिए और सही राग चुनिए।</p>
+      <div class="row"><button class="btn gold" id="qPlay">▶ सुनें</button><button class="btn" id="qNext">नया प्रश्न</button><b id="qScore"></b></div>
       <div class="grid sm" id="qOpt"></div></div>
   </section>
-
-  </main>
+</main>
 
 <div id="modal"></div>
 
 <footer id="bar">
-  <button class="btn" id="drone" title="Tanpura">🪕 Tanpura</button>
-  <label>Sa <input id="sa" type="range" min="110" max="330" value="196"><b id="saV"></b></label>
-  <label>Volume <input id="vol" type="range" min="0" max="1" step=".02" value=".8"></label>
-  <label>Galm <input id="rev" type="range" min="0" max="1" step=".02" value=".35"></label>
-  <select id="inst"><option value="sitar">Sitar-achtig</option><option value="bansuri">Bansuri</option><option value="harmonium">Harmonium</option></select>
-  <button class="btn" id="stop">■ Stop</button>
+  <button class="btn" id="drone" title="तानपूरा">🪕 तानपूरा</button>
+  <label>षड्ज <input id="sa" type="range" min="110" max="330" value="196"><b id="saV"></b></label>
+  <label>ध्वनि-स्तर <input id="vol" type="range" min="0" max="1" step=".02" value=".8"></label>
+  <label>प्रतिध्वनि <input id="rev" type="range" min="0" max="1" step=".02" value=".35"></label>
+  <select id="inst"><option value="sitar">त्रितंत्री</option><option value="bansuri">वंशी</option><option value="harmonium">संवादिनी</option></select>
+  <button class="btn" id="stop">■ रोकें</button>
 </footer>
 <script src="book-data.js"></script>
 <script src="app.js"></script>

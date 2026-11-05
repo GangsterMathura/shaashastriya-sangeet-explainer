@@ -1,29 +1,29 @@
-# शास्त्रीय संगीत — Raags & Taals (interactieve explainer)
+# शास्त्रीय संगीत — राग एवं ताल (संवादात्मक प्रस्तुति)
 
-Een interactieve ontdekkingsreis door de Hindoestaanse klassieke muziek. Alles draait in de browser, zonder build-stap of server-code. Het boek zelf staat **niet** in deze repo of op de site; alleen algemene gegevens over raags en taals.
+भारतीय शास्त्रीय संगीत की संवादात्मक खोज-यात्रा। सब कुछ अंतर्जाल-विचरक में ही चलता है; किसी निर्माण-चरण अथवा सेवक-कोड की आवश्यकता नहीं। पुस्तक स्वयं इस भंडार अथवा स्थल पर **नहीं** है; यहाँ केवल रागों तथा तालों की सामान्य जानकारी है।
 
-## Wat zit erin
+## इसमें क्या है
 
-| Tab | Wat je kunt doen |
+| पृष्ठ | आप क्या कर सकते हैं |
 |---|---|
-| **Start** | 3D-scène met swar-ring, draaiende gyroscoop, lotus en zwevende edelstenen; klik een swar om hem te horen |
-| **Raags** | 115 raags: zoeken en filteren op thaat, jaati en tijd. Per raag: aroh, avroh en pakad horen, een telkens nieuwe improvisatie in teentaal met tabla, en uitleg van de begrippen |
-| **Taals** | 12 taals met theka op tabla, twee 3D-trommels die meebewegen, 3D matra-ring, tempo-, laya- en volume-slider |
-| **Swar-lab** | Toetsenbord van 12 swars, slider tussen *zuivere* en *gelijkzwevende* stemming (in cents), de 10 thaats afspelen, zwevingsproef Sa–Pa |
-| **Dagklok** | Sleep door de dag en zie welke raags bij dat uur horen; laat de dag lopen |
-| **Leren** | 3D flashcards en de quiz "Raad de raag" op gehoor |
+| **मुखपृष्ठ** | त्रिविम दृश्य: स्वर-घेरा, घूमता हुआ गोलक-यंत्र, कमल तथा तैरते रत्न; किसी स्वर पर दबाकर उसे सुनिए |
+| **राग** | ११५ राग: थाट, जाति तथा समय के अनुसार खोज एवं छँटाई। प्रत्येक राग में आरोह, अवरोह तथा पकड़ सुनिए; तीनताल में हर बार नया आलाप एवं तान ताल-वाद्य के साथ; तथा शब्दों की व्याख्या |
+| **ताल** | १२ ताल, ठेका ताल-वाद्य पर, साथ-साथ हिलते दो त्रिविम ढोल, त्रिविम मात्रा-घेरा, गति, लय तथा ध्वनि की पट्टियाँ |
+| **स्वर-प्रयोगशाला** | बारह स्वरों का कुंजीपटल; शुद्ध अनुपात तथा समान अंतराल के बीच पट्टी (सूक्ष्मांशों में); दस थाट सुनना; षड्ज–पंचम की विस्पंद-परीक्षा |
+| **प्रहर-घड़ी** | दिन में आगे-पीछे खिसकाइए और देखिए कि उस समय कौन-से राग गाए-बजाए जाते हैं; दिन चलाइए |
+| **अध्ययन** | त्रिविम स्मरण-पत्र तथा कान से "राग पहचानिए" प्रश्नोत्तरी |
 
-De balk onderaan: tanpura-drone, **Sa-slider** (110–330 Hz), volume, galm en instrument (sitar-achtig, bansuri, harmonium).
+नीचे की पट्टी में: तानपूरा, **षड्ज-पट्टी** (११०–३३० कंपन), ध्वनि-स्तर, प्रतिध्वनि तथा वाद्य (त्रितंत्री, वंशी, संवादिनी)।
 
-## Bestanden
+## संचिकाएँ
 
-- `index.html`, `styles.css`, `app.js` — de site
-- `book-data.js` — alleen feiten: toonreeksen, vaadi/samvaadi, tijden en thekas (`window.BOOK`)
-- `samples/` — *optioneel*, zie hieronder
+- `index.html`, `styles.css`, `app.js` — स्थल
+- `book-data.js` — केवल तथ्य: स्वर-रचना, वादी/संवादी, समय तथा ठेके (`window.BOOK`)
+- `samples/` — *वैकल्पिक*, नीचे देखिए
 
-## Echte geluiden (optioneel, aanbevolen)
+## वास्तविक ध्वनियाँ (वैकल्पिक, अनुशंसित)
 
-Het geluid wordt standaard gemodelleerd in de browser. Wil je de klank van echte opnames, zet dan bestanden in een map `samples/` met een `samples/samples.json`:
+ध्वनि पहले से ही विचरक में ही गढ़ी जाती है। यदि आप वास्तविक रिकॉर्डिंग की ध्वनि चाहें, तो `samples/` निर्देशिका बनाइए और उसमें `samples/samples.json` रखिए:
 
 ```json
 {
@@ -33,15 +33,17 @@ Het geluid wordt standaard gemodelleerd in de browser. Wil je de klank van echte
 }
 ```
 
-- Tabla: één korte opname per slag (na, tin, tu, ti, te, ta, ge, ke). Samengestelde bols zoals Dha en Dhin worden uit deze slagen opgebouwd.
-- Harmonium: één aangehouden noot; `ref` is de toonhoogte in Hz van die opname. De andere noten worden daaruit afgeleid.
-- Ontbreekt een bestand of `samples.json`, dan gebruikt de site gewoon het gemodelleerde geluid.
-- Gebruik alleen opnames waarvan je de licentie hebt om ze openbaar te mogen publiceren (zelf opgenomen, CC0 of CC-BY met vermelding).
+- ताल-वाद्य: प्रत्येक आघात की एक छोटी रिकॉर्डिंग (na, tin, tu, ti, te, ta, ge, ke)। धा तथा धिन जैसे संयुक्त बोल इन्हीं आघातों से बनाए जाते हैं।
+- संवादिनी: एक ठहरा हुआ स्वर; `ref` उस रिकॉर्डिंग की स्वर-आवृत्ति है। शेष स्वर उसी से निकाले जाते हैं।
+- यदि कोई संचिका अथवा `samples.json` न हो, तो स्थल स्वतः गढ़ी हुई ध्वनि का प्रयोग करता है।
+- केवल वही रिकॉर्डिंग प्रयोग कीजिए जिन्हें सार्वजनिक रूप से प्रकाशित करने की अनुज्ञप्ति आपके पास हो (स्वयं की रिकॉर्डिंग, अथवा सार्वजनिक-क्षेत्र या श्रेय-सहित मुक्त अनुज्ञप्ति वाली)।
 
-## Lokaal draaien
+## स्थानीय रूप से चलाना
+
+आदेश-पटल में यह आदेश दीजिए:
 
 ```bash
 python -m http.server 8000
 ```
 
-Met **GitHub Pages** (Settings → Pages → branch `main`, map `/root`) staat de site direct online. Browsers starten geluid pas na een klik.
+**GitHub Pages** (Settings → Pages → शाखा `main`, निर्देशिका `/root`) से स्थल सीधे अंतर्जाल पर आ जाता है। विचरक ध्वनि तभी आरंभ करते हैं जब आप पृष्ठ पर कहीं दबा चुके हों।

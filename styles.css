@@ -129,3 +129,6 @@ h1 span{display:inline-block;background:linear-gradient(90deg,var(--gd2),var(--g
 .key{animation:kf 4.5s ease-in-out infinite}@keyframes kf{50%{translate:0 -7px}}
 details{margin:12px 0;border:1px solid var(--ln);border-radius:14px;padding:8px 16px;background:#0003}summary{cursor:pointer;font:600 14px Cinzel;color:var(--gd2);letter-spacing:.06em}details p{margin:8px 0}
 .flip{animation:fl2 6s ease-in-out infinite alternate}@keyframes fl2{from{transform:translateY(-6px) rotateZ(-.6deg)}to{transform:translateY(6px) rotateZ(.6deg)}}
+
+/* देवनागरी पाठ के लिए */
+body *{font-family:'Noto Serif Devanagari',serif!important;letter-spacing:0!important;text-transform:none!important}
