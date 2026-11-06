@@ -184,3 +184,44 @@ h2{background:linear-gradient(180deg,#fff5cf 0,#d8b45a 52%,#7a5614 53%,#f6e3a1 1
 h1{-webkit-box-reflect:below -10px linear-gradient(transparent 50%,#ffffff2a)}.flip{-webkit-box-reflect:below 4px linear-gradient(transparent 55%,#ffffff22)}
 .logo{display:inline-block;animation:lg 4s ease-in-out infinite alternate,l3 9s linear infinite}@keyframes l3{to{transform:perspective(400px) rotateY(360deg)}}
 nav button{transition:.35s}nav button:hover{transform:perspective(300px) translateZ(14px) rotateX(-18deg)}
+
+/* ===== अनंत त्रिविम: तिरंगा, सिंह-स्तंभ, आकाशगंगा, पुष्प-वर्षा ===== */
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#ter{opacity:.45}
+@keyframes fly{to{transform:translateZ(480px)}}
+.tunnel{animation:fly 24s linear infinite,roll 12s ease-in-out infinite alternate}
+.tunnel b:nth-child(3n+1) i{border:2px solid #ff9933dd;box-shadow:0 0 36px #ff993388,inset 0 0 50px #ff993333;animation-direction:normal}
+.tunnel b:nth-child(3n+2) i{border:2px solid #ffffffcc;box-shadow:0 0 36px #ffffff66,inset 0 0 50px #ffffff22;animation-direction:reverse}
+.tunnel b:nth-child(3n) i{border:2px solid #1fae10dd;box-shadow:0 0 36px #138808aa,inset 0 0 50px #13880833;animation-direction:normal}
+@keyframes roll{from{rotate:z -4deg}to{rotate:z 4deg}}
+.field{animation:roll2 25s ease-in-out infinite alternate}@keyframes roll2{from{rotate:y -9deg}to{rotate:y 9deg}}
+.o3.t3{animation:ryy 9s linear infinite;display:flex;align-items:center;justify-content:center;font-size:calc(var(--h)*1.7);font-weight:700;color:transparent;background:linear-gradient(180deg,#fff5cf,var(--c1));-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 14px var(--c1))}@keyframes ryy{to{transform:rotateY(360deg)}}
+main>section.on{animation:flipin 1s cubic-bezier(.2,.9,.2,1)}@keyframes flipin{from{opacity:0;transform:perspective(1600px) rotateY(-75deg) translateZ(-400px) scale(.8)}}
+h2{filter:drop-shadow(0 2px 0 #8a6417) drop-shadow(0 4px 0 #6d4f10) drop-shadow(0 10px 12px #000a)}
+.btn:hover{transform:perspective(400px) translateZ(22px) rotateX(-14deg) scale(1.05)}
+.marq{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;animation:ryr 40s linear infinite reverse;pointer-events:none}@keyframes ryr{to{transform:rotateY(360deg)}}
+.marq span{position:absolute;left:-90px;top:-12px;width:180px;text-align:center;font-size:19px;color:#f6e3a1;text-shadow:0 0 14px #d8b45a;white-space:nowrap}
+.nat{display:flex;gap:70px;justify-content:center;align-items:center;flex-wrap:wrap;margin:50px 0 20px;perspective:1200px}
+.fw{position:relative;padding-left:14px;transform-style:preserve-3d;transform:rotateY(calc(var(--mx,0)*-22deg)) rotateX(calc(var(--my,0)*12deg));transition:transform .3s}
+.fw canvas{max-width:86vw;height:auto;filter:drop-shadow(0 24px 24px #000a)}
+.pole{position:absolute;left:0;top:-6px;bottom:-110px;width:10px;border-radius:5px;background:linear-gradient(90deg,#7a5614,#f6e3a1,#7a5614);box-shadow:0 0 16px #d8b45a99}
+.pole::before{content:"";position:absolute;left:-3px;top:-10px;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff,#d8b45a 50%,#6d4f10)}
+#flag2{height:30px;width:auto;margin-left:6px;filter:drop-shadow(0 2px 6px #000a)}
+.emb{position:relative;width:340px;height:400px;perspective:1000px}
+.cap{position:absolute;left:50%;top:46%;width:0;height:0;transform-style:preserve-3d;animation:cs2 16s linear infinite}@keyframes cs2{from{transform:rotateX(-10deg) rotateY(0)}to{transform:rotateX(-10deg) rotateY(360deg)}}
+.cap i,.lion{backface-visibility:hidden}
+.cap .ab,.cap .bs{position:absolute;background:linear-gradient(90deg,#8a6417,#f6e3a1 50%,#8a6417);box-shadow:inset 0 0 8px #0005}.cap .bs{background:linear-gradient(180deg,#f6e3a1,#b88a2b 55%,#6d4f10)}
+.cap .wh{position:absolute;left:-18px;top:-27px;width:36px;height:36px;border-radius:50%;border:2px solid #000080;background:repeating-conic-gradient(#000080 0 3deg,transparent 3deg 15deg),radial-gradient(circle,#000080 0 12%,transparent 13%),#f3dc9a}
+.cap .an{position:absolute;left:-15px;top:-26px;font-size:28px;font-style:normal;filter:grayscale(1) brightness(.3)}
+.lion{position:absolute;left:-46px;top:-150px;width:92px;height:110px}.lion *{position:absolute;display:block}
+.lion .mane{left:0;top:0;width:92px;height:92px;border-radius:50%;background:radial-gradient(circle,#c99a3a 0 34%,transparent 35%),repeating-conic-gradient(#f0cf7a 0 9deg,#a8791f 9deg 18deg);box-shadow:0 0 18px #d8b45a88}
+.lion .face{left:18px;top:16px;width:56px;height:60px;border-radius:50% 50% 46% 46%;background:radial-gradient(circle at 35% 30%,#fff1b8,#d8a840 60%,#8a6417)}
+.lion .e1,.lion .e2{top:38px;width:10px;height:6px;border-radius:50%;background:#2a0610}.lion .e1{left:30px}.lion .e2{left:52px}
+.lion .no{left:40px;top:50px;width:0;height:0;border:6px solid transparent;border-top:9px solid #5b0f23}
+.lion .mo{left:33px;top:62px;width:26px;height:10px;border-bottom:2px solid #5b0f23;border-radius:0 0 50% 50%}
+.lion .bd{left:14px;top:76px;width:64px;height:34px;border-radius:18px 18px 6px 6px;background:linear-gradient(#d8a840,#8a6417)}
+.lion .p1,.lion .p2{top:102px;width:22px;height:9px;border-radius:5px;background:#c99a3a}.lion .p1{left:16px}.lion .p2{left:54px}
+.motto{position:absolute;left:0;right:0;bottom:0;text-align:center;font-size:34px;font-weight:700;background:linear-gradient(180deg,#fff5cf,#d8b45a 55%,#7a5614 56%,#f6e3a1);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 #6d4f10) drop-shadow(0 8px 12px #000a)}
+.pt{position:fixed;top:0;width:14px;height:20px;border-radius:70% 0 70% 0;background:linear-gradient(135deg,var(--c),#0008);animation:fall var(--d) linear var(--dl) infinite;z-index:3;pointer-events:none;opacity:.85}
+@keyframes fall{from{transform:translate3d(0,-6vh,0) rotateX(0) rotateY(0)}to{transform:translate3d(var(--sw),112vh,220px) rotateX(720deg) rotateY(540deg)}}
+#hint{position:fixed;left:50%;bottom:104px;transform:translateX(-50%);z-index:60;padding:10px 22px;border-radius:30px;border:1px solid var(--gd);background:linear-gradient(180deg,#ffffff40,#ffffff10 50%,#0006 51%),#2a0610d9;color:var(--gd2);box-shadow:0 0 30px #d8b45a88;animation:hp 1.6s ease-in-out infinite alternate;pointer-events:none}@keyframes hp{to{transform:translateX(-50%) scale(1.07);box-shadow:0 0 50px #f6e3a1}}

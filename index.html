@@ -13,8 +13,8 @@
 <body>
 <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
 <div id="world"><div class="cam" id="cam"><div class="tunnel" id="tunnel"></div><div class="ceil"></div><div class="field" id="field"></div></div></div>
-<canvas id="ter"></canvas><canvas id="bg"></canvas><div id="glow"></div><div id="trail"></div>
-<header><b class="logo">॥ नाद ॥</b><nav id="nav"></nav></header>
+<canvas id="gl"></canvas><canvas id="ter"></canvas><canvas id="bg"></canvas><div id="glow"></div><div id="trail"></div>
+<header><b class="logo">॥ नाद ॥</b><canvas id="flag2" width="64" height="44"></canvas><nav id="nav"></nav></header>
 <main>
   <section id="home" data-t="मुखपृष्ठ">
     <div class="stage"><div class="ring" id="ring"><div class="armil"><i></i><i></i><i></i><i></i><span class="core"></span></div><div class="eqr" id="eqr"></div></div></div>
@@ -22,6 +22,7 @@
     <p class="sub">ध्वनि से राग तक · राग एवं ताल</p>
     <p class="lead">भारतीय शास्त्रीय संगीत के रागों का परिचय पाइए और उन्हें सुनिए; ताल-वाद्य पर तालों के ठेके सुनिए। स्वर-व्यवस्था, दिन के प्रहर तथा थाटों के साथ प्रयोग कीजिए। किसी स्वर को सुनने के लिए घेरे में उस पर दबाइए।</p>
     <div class="row c"><button class="btn gold" data-go="raags">रागों की खोज</button><button class="btn" id="demo">▶ राग यमन सुनें</button><button class="btn" data-go="taals">ताल एवं ताल-वाद्य</button></div>
+    <div class="nat"><div class="fw"><i class="pole"></i><canvas id="flag" width="480" height="320"></canvas></div><div class="emb" id="emb"></div></div>
     <div class="stats" id="stats"></div>
   </section>
 
@@ -89,6 +90,8 @@
 <div id="modal"></div>
 
 <footer id="bar">
+  <button class="btn" id="bgm" title="त्रितंत्री-संगीत">🎶 त्रितंत्री-संगीत</button>
+  <label>संगीत-स्तर <input id="bgv" type="range" min="0" max="1" step=".02" value=".5"></label>
   <button class="btn" id="drone" title="तानपूरा">🪕 तानपूरा</button>
   <label>षड्ज <input id="sa" type="range" min="110" max="330" value="196"><b id="saV"></b></label>
   <label>ध्वनि-स्तर <input id="vol" type="range" min="0" max="1" step=".02" value=".8"></label>
@@ -96,6 +99,7 @@
   <select id="inst"><option value="sitar">त्रितंत्री</option><option value="bansuri">वंशी</option><option value="harmonium">संवादिनी</option></select>
   <button class="btn" id="stop">■ रोकें</button>
 </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="book-data.js"></script>
 <script src="app.js"></script>
 </body>
