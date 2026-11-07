@@ -228,11 +228,6 @@ const FLAG=(()=>{const c=document.createElement('canvas');c.width=300;c.height=2
 function waveFlag(cv,t,amp,step){const x=cv.getContext('2d'),W=cv.width,H=cv.height,n=Math.floor(W/step),pad=amp+4,fh=H-pad*2,w=W/n;x.clearRect(0,0,W,H);
  for(let i=0;i<n;i++){const u=i/n,ph=u*6-t*3,dy=Math.sin(ph)*amp*u,sh=Math.cos(ph)*.3;x.drawImage(FLAG,u*300,0,300/n+1,200,i*w,pad+dy,w+1,fh);x.fillStyle=sh>0?`rgba(255,255,255,${(sh*.35).toFixed(3)})`:`rgba(0,0,0,${(-sh*.55).toFixed(3)})`;x.fillRect(i*w,pad+dy,w+1,fh)}}
 (()=>{const f1=$('#flag'),f2=$('#flag2'),hm=$('#home');let fr=0;(function f(){requestAnimationFrame(f);if(document.hidden||(++fr%(LITE?3:2)))return;const t=performance.now()/1000;if(f1&&hm.classList.contains('on'))waveFlag(f1,t,16,LITE?10:6);if(f2)waveFlag(f2,t,3,4)})();
- const em=$('#emb');if(em){const cap=E('div','cap','',em);
-  const drum=(R,Hh,top,n,cls)=>{const w=2*Math.PI*R/n+1;for(let k=0;k<n;k++){const s=E('i',cls,'',cap);s.style.cssText=`width:${w}px;height:${Hh}px;left:${-w/2}px;top:${top}px;transform:rotateY(${k*360/n}deg) translateZ(${R}px)`}};
-  drum(88,36,14,24,'bs');drum(72,50,-34,24,'ab');
-  [0,90,180,270].forEach((a,k)=>{const w=E('i','wh','',cap);w.style.transform=`rotateY(${a}deg) translateZ(73px)`;const m=E('i','an',['🦁','🐘','🐎','🐂'][k],cap);m.style.transform=`rotateY(${a+45}deg) translateZ(73px)`});
-  [0,120,240].forEach(a=>{const l=E('div','lion','<b class="mane"></b><b class="face"></b><u class="e1"></u><u class="e2"></u><u class="no"></u><u class="mo"></u><b class="bd"></b><u class="p1"></u><u class="p2"></u>',cap);l.style.transform=`rotateY(${a}deg) translateZ(52px)`});
-  E('div','motto','सत्यमेव जयते',em)}
+ const em=$('#emb');if(em){const im=E('img','embimg','',em);im.src='emblem.png';im.alt='भारत का राज्य-चिह्न: सत्यमेव जयते'}
 })();
 go(location.hash.slice(1)||'home');

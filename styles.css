@@ -201,3 +201,8 @@ header::after,.panel::after,.panel::before,.card::before,.stat::before,.card::af
 .lite .cap{animation-duration:30s}
 .lite h2{filter:none}
 .lite .panel,.lite .card,.lite .sheet,.lite .stat,.lite .btn{box-shadow:none}
+
+/* राज्य-चिह्न (चित्र) */
+.embimg{position:absolute;left:50%;top:50%;width:min(340px,80vw);height:auto;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 18px 30px #000a,0 0 40px #d8b45a55;animation:ef 6s ease-in-out infinite alternate}
+@keyframes ef{from{transform:translate(-50%,-52%)}to{transform:translate(-50%,-48%)}}
+.lite .embimg{animation:none}
