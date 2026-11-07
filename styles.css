@@ -133,37 +133,8 @@ details{margin:12px 0;border:1px solid var(--ln);border-radius:14px;padding:8px 
 /* देवनागरी पाठ के लिए */
 body *{font-family:'Noto Serif Devanagari',serif!important;letter-spacing:0!important;text-transform:none!important}
 
-/* ===== अत्यंत त्रिविम संसार + चमकदार (ग्लॉसी) रूप ===== */
 :root{--card:rgba(255,236,214,.07)}
-body{background:radial-gradient(1000px 700px at 12% -5%,#7d1738 0%,transparent 60%),radial-gradient(900px 800px at 100% 105%,#0e7a58 0%,transparent 60%),linear-gradient(160deg,#12040a,#0a0508 45%,#03140f);background-attachment:fixed}
-#world{position:fixed;inset:0;z-index:0;perspective:900px;perspective-origin:50% 46%;overflow:hidden;pointer-events:none}
-.cam{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(calc(var(--my,0)*-8deg)) rotateY(calc(var(--mx,0)*14deg)) scale(calc(1 + var(--lv,0)*.1));translate:0 calc(var(--sy,0)*-40px) calc(var(--sy,0)*150px);transition:transform .3s ease-out}
-.cam.sw{animation:sw 1s cubic-bezier(.3,1.2,.4,1)}@keyframes sw{from{transform:rotateY(80deg) rotateX(12deg) scale(.6)}}
-.tunnel{position:absolute;left:50%;top:48%;width:0;height:0;transform-style:preserve-3d;animation:fly 20s linear infinite}@keyframes fly{to{transform:translateZ(320px)}}
-.tunnel b{position:absolute;left:-460px;top:-460px;width:920px;height:920px;transform-style:preserve-3d}
-.tunnel i{display:block;width:100%;height:100%;border:2px solid #d8b45a99;border-radius:50%;box-shadow:0 0 34px #d8b45a66,inset 0 0 50px #b8334f33;animation:rzz 50s linear infinite}
-.tunnel b:nth-child(even) i{border:2px dashed #17a173aa;box-shadow:0 0 34px #17a17366,inset 0 0 50px #17a17322;animation-direction:reverse}
-@keyframes rzz{to{transform:rotateZ(360deg)}}
-.ceil{position:absolute;left:-60%;width:220%;bottom:56%;height:260%;transform-origin:50% 100%;transform:rotateX(-80deg);background:repeating-linear-gradient(90deg,#d8b45a40 0 2px,transparent 2px 110px),repeating-linear-gradient(0deg,#17a17338 0 2px,transparent 2px 110px);animation:gm 4s linear infinite;-webkit-mask:linear-gradient(transparent,#000 40%);mask:linear-gradient(transparent,#000 40%)}@keyframes gm{to{background-position:0 110px,0 110px}}
-.field{position:absolute;inset:0;transform-style:preserve-3d}
-.fo{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:translate3d(var(--x),var(--y),var(--z));animation:drift var(--d) ease-in-out infinite alternate}
-@keyframes drift{from{translate:0 -34px 0}to{translate:26px 34px 60px}}
-.o3{position:absolute;left:calc(var(--h)*-1);top:calc(var(--h)*-1);width:calc(var(--h)*2);height:calc(var(--h)*2);transform-style:preserve-3d;animation:sp3 16s linear infinite}@keyframes sp3{to{transform:rotateX(360deg) rotateY(360deg) rotateZ(180deg)}}
-.o3.t0 i{position:absolute;inset:0;border:1px solid #fff9;background:linear-gradient(135deg,var(--c1),var(--c2));opacity:.92;box-shadow:inset 0 0 18px #fff6}
-.o3.t0 i::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#ffffffaa,transparent 42%)}
-.o3.t0 i:nth-child(1){transform:translateZ(var(--h))}.o3.t0 i:nth-child(2){transform:rotateY(90deg) translateZ(var(--h))}.o3.t0 i:nth-child(3){transform:rotateY(180deg) translateZ(var(--h))}.o3.t0 i:nth-child(4){transform:rotateY(270deg) translateZ(var(--h))}.o3.t0 i:nth-child(5){transform:rotateX(90deg) translateZ(var(--h))}.o3.t0 i:nth-child(6){transform:rotateX(-90deg) translateZ(var(--h))}
-.o3.t1{animation:none;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff 0,#ffffffcc 5%,var(--c1) 26%,var(--c2) 68%,#000 100%);box-shadow:0 0 44px var(--c1)}
-.o3.t2 i{position:absolute;inset:0;border:3px solid var(--c1);border-radius:50%;box-shadow:0 0 18px var(--c1),inset 0 0 18px var(--c1)}.o3.t2 i:nth-child(2){transform:rotateY(90deg)}.o3.t2 i:nth-child(3){transform:rotateX(90deg)}
-#ter{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.55}
-main{transform:perspective(1800px) rotateX(calc(var(--my,0)*-1.6deg)) rotateY(calc(var(--mx,0)*2.4deg));transition:transform .35s ease-out}
-.helix{position:absolute;top:50%;width:0;height:0;transform-style:preserve-3d;animation:hx 10s linear infinite}@keyframes hx{to{transform:rotateY(360deg)}}
-.helix i,.orbit i{position:absolute;left:-7px;top:-7px;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff,var(--c) 40%,#000);box-shadow:0 0 12px var(--c)}
-.orbit{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(74deg) rotateY(-12deg);pointer-events:none}
-.orbit .spin{position:absolute;width:0;height:0;transform-style:preserve-3d;animation:rzz 30s linear infinite}
-.orbit .disc{position:absolute;left:-300px;top:-300px;width:600px;height:600px;border-radius:50%;border:3px solid #d8b45a99;box-shadow:0 0 40px #d8b45a66,inset 0 0 40px #d8b45a44}
-.orbit i{left:-13px;top:-13px;width:26px;height:26px}
-#trail{position:fixed;inset:0;pointer-events:none;z-index:45}
-.tr{position:fixed;left:0;top:0;margin:-9px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff,#f6e3a1 35%,#b88a2b 75%,#3a2306);box-shadow:0 0 14px #d8b45aaa;pointer-events:none}
+body{background:radial-gradient(1000px 700px at 12% -5%,#7d1738 0%,transparent 60%),radial-gradient(900px 800px at 100% 105%,#0e7a58 0%,transparent 60%),linear-gradient(160deg,#12040a,#0a0508 45%,#03140f);background-attachment:scroll}
 /* चमकदार सतहें */
 header{background:linear-gradient(180deg,#ffffff24,#ffffff08 50%,#00000055 51%),#1a0a10d9}
 h2{background:linear-gradient(180deg,#fff5cf 0,#d8b45a 52%,#7a5614 53%,#f6e3a1 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-box-reflect:below -6px linear-gradient(transparent 55%,#ffffff2e)}
@@ -186,21 +157,6 @@ h1{-webkit-box-reflect:below -10px linear-gradient(transparent 50%,#ffffff2a)}.f
 nav button{transition:.35s}nav button:hover{transform:perspective(300px) translateZ(14px) rotateX(-18deg)}
 
 /* ===== अनंत त्रिविम: तिरंगा, सिंह-स्तंभ, आकाशगंगा, पुष्प-वर्षा ===== */
-#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-#ter{opacity:.45}
-@keyframes fly{to{transform:translateZ(480px)}}
-.tunnel{animation:fly 24s linear infinite,roll 12s ease-in-out infinite alternate}
-.tunnel b:nth-child(3n+1) i{border:2px solid #ff9933dd;box-shadow:0 0 36px #ff993388,inset 0 0 50px #ff993333;animation-direction:normal}
-.tunnel b:nth-child(3n+2) i{border:2px solid #ffffffcc;box-shadow:0 0 36px #ffffff66,inset 0 0 50px #ffffff22;animation-direction:reverse}
-.tunnel b:nth-child(3n) i{border:2px solid #1fae10dd;box-shadow:0 0 36px #138808aa,inset 0 0 50px #13880833;animation-direction:normal}
-@keyframes roll{from{rotate:z -4deg}to{rotate:z 4deg}}
-.field{animation:roll2 25s ease-in-out infinite alternate}@keyframes roll2{from{rotate:y -9deg}to{rotate:y 9deg}}
-.o3.t3{animation:ryy 9s linear infinite;display:flex;align-items:center;justify-content:center;font-size:calc(var(--h)*1.7);font-weight:700;color:transparent;background:linear-gradient(180deg,#fff5cf,var(--c1));-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 14px var(--c1))}@keyframes ryy{to{transform:rotateY(360deg)}}
-main>section.on{animation:flipin 1s cubic-bezier(.2,.9,.2,1)}@keyframes flipin{from{opacity:0;transform:perspective(1600px) rotateY(-75deg) translateZ(-400px) scale(.8)}}
-h2{filter:drop-shadow(0 2px 0 #8a6417) drop-shadow(0 4px 0 #6d4f10) drop-shadow(0 10px 12px #000a)}
-.btn:hover{transform:perspective(400px) translateZ(22px) rotateX(-14deg) scale(1.05)}
-.marq{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;animation:ryr 40s linear infinite reverse;pointer-events:none}@keyframes ryr{to{transform:rotateY(360deg)}}
-.marq span{position:absolute;left:-90px;top:-12px;width:180px;text-align:center;font-size:19px;color:#f6e3a1;text-shadow:0 0 14px #d8b45a;white-space:nowrap}
 .nat{display:flex;gap:70px;justify-content:center;align-items:center;flex-wrap:wrap;margin:50px 0 20px;perspective:1200px}
 .fw{position:relative;padding-left:14px;transform-style:preserve-3d;transform:rotateY(calc(var(--mx,0)*-22deg)) rotateX(calc(var(--my,0)*12deg));transition:transform .3s}
 .fw canvas{max-width:86vw;height:auto;filter:drop-shadow(0 24px 24px #000a)}
@@ -222,6 +178,26 @@ h2{filter:drop-shadow(0 2px 0 #8a6417) drop-shadow(0 4px 0 #6d4f10) drop-shadow(
 .lion .bd{left:14px;top:76px;width:64px;height:34px;border-radius:18px 18px 6px 6px;background:linear-gradient(#d8a840,#8a6417)}
 .lion .p1,.lion .p2{top:102px;width:22px;height:9px;border-radius:5px;background:#c99a3a}.lion .p1{left:16px}.lion .p2{left:54px}
 .motto{position:absolute;left:0;right:0;bottom:0;text-align:center;font-size:34px;font-weight:700;background:linear-gradient(180deg,#fff5cf,#d8b45a 55%,#7a5614 56%,#f6e3a1);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 #6d4f10) drop-shadow(0 8px 12px #000a)}
-.pt{position:fixed;top:0;width:14px;height:20px;border-radius:70% 0 70% 0;background:linear-gradient(135deg,var(--c),#0008);animation:fall var(--d) linear var(--dl) infinite;z-index:3;pointer-events:none;opacity:.85}
-@keyframes fall{from{transform:translate3d(0,-6vh,0) rotateX(0) rotateY(0)}to{transform:translate3d(var(--sw),112vh,220px) rotateX(720deg) rotateY(540deg)}}
-#hint{position:fixed;left:50%;bottom:104px;transform:translateX(-50%);z-index:60;padding:10px 22px;border-radius:30px;border:1px solid var(--gd);background:linear-gradient(180deg,#ffffff40,#ffffff10 50%,#0006 51%),#2a0610d9;color:var(--gd2);box-shadow:0 0 30px #d8b45a88;animation:hp 1.6s ease-in-out infinite alternate;pointer-events:none}@keyframes hp{to{transform:translateX(-50%) scale(1.07);box-shadow:0 0 50px #f6e3a1}}
+
+/* ===== हल्का एवं सुचारु रूप ===== */
+*{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+body::before{display:none}
+.orb{filter:none;opacity:.5}.o1{background:radial-gradient(circle,#8a1c3c,transparent 68%)}.o2{background:radial-gradient(circle,#12936b,transparent 68%)}.orb.o3{background:radial-gradient(circle,#d8b45a,transparent 68%);opacity:.28}
+h1,h2,.stat,.flip{-webkit-box-reflect:none}
+h2{filter:drop-shadow(0 3px 4px #000a)}
+h1 span{animation:rise 1.2s cubic-bezier(.2,.9,.2,1) both;filter:none}
+.logo,.btn.gold,.flip,.key,svg.wh{animation:none}
+header::after,.panel::after,.panel::before,.card::before,.stat::before,.card::after{display:none}
+.card:hover::after{display:block}
+.panel{transform:none;overflow:visible}
+.card{transform-style:flat;animation:in .5s both}
+.card .d,.card .l,.card small{transform:none}
+.stage,main,.sheet,.fw{transform:none}
+.dial::before{animation:none}
+.dial u{animation:none;opacity:calc(var(--nt,0)*.8)}
+.drum i{transform:translateZ(calc(var(--k)*9px))}
+.lite .orb,.lite .dial::before{display:none}
+.lite .card,.lite .stat,.lite .ring{animation:none}
+.lite .cap{animation-duration:30s}
+.lite h2{filter:none}
+.lite .panel,.lite .card,.lite .sheet,.lite .stat,.lite .btn{box-shadow:none}
