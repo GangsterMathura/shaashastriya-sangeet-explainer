@@ -114,7 +114,7 @@ const uniq=a=>[...new Set(a.filter(Boolean))];
 uniq(B.raags.map(r=>r.thaat)).forEach(v=>$('#fTh').append(new Option(v,v)));uniq(B.raags.map(r=>r.jati)).forEach(v=>$('#fJa').append(new Option(v,v)));['प्रातःकाल','मध्याह्न','सायंकाल','रात्रि','सर्वकालिक','वर्षा ऋतु'].forEach(v=>$('#fTi').append(new Option(v,v)));
 function grid(){const q=$('#q').value.trim().toLowerCase(),a=$('#fTh').value,j=$('#fJa').value,t=$('#fTi').value,g=$('#grid');g.innerHTML='';let n=0;
  B.raags.forEach((r,i)=>{if(q&&!(r.name+' '+r.lat+' '+(r.thaat||'')).toLowerCase().includes(q))return;if(a&&r.thaat!==a||j&&r.jati!==j||t&&bucket(r)!==t)return;n++;
-  const c=E('div','card',`<span class="n">${r.n}</span><div class="d">${X(r.name)}</div><small>${X(r.thaat)} · ${X(bucket(r))}</small>`,g);c.style.animationDelay=Math.min(n,24)*25+'ms';c.onclick=()=>openRaag(i)});
+  const c=E('div','card',`<span class="n">${r.n}</span><div class="d">${X(r.name)}</div><small>${X(r.thaat)} थाट</small><small class="tm">${({'प्रातःकाल':'🌅','मध्याह्न':'☀️','सायंकाल':'🌇','रात्रि':'🌙','सर्वकालिक':'♾️','वर्षा ऋतु':'🌧️'})[bucket(r)]||''} ${X(bucket(r))}</small>`,g);c.style.animationDelay=Math.min(n,24)*25+'ms';c.dataset.b=bucket(r);c.onclick=()=>openRaag(i)});
  $('#cnt').textContent=n+' / '+B.raags.length+' राग'}
 ['#q','#fTh','#fJa','#fTi'].forEach(s=>$(s).addEventListener('input',grid));grid();
 $('#grid').addEventListener('mousemove',e=>{const c=e.target.closest('.card');if(!c)return;const r=c.getBoundingClientRect();c.style.setProperty('--ry',((e.clientX-r.left)/r.width-.5)*18+'deg');c.style.setProperty('--rx',-((e.clientY-r.top)/r.height-.5)*18+'deg');c.style.setProperty('--gx',e.clientX-r.left+'px');c.style.setProperty('--gy',e.clientY-r.top+'px')});
@@ -231,3 +231,15 @@ function waveFlag(cv,t,amp,step){const x=cv.getContext('2d'),W=cv.width,H=cv.hei
  const em=$('#emb');if(em){const im=E('img','embimg','',em);im.src='emblem.png';im.alt='भारत का राज्य-चिह्न: सत्यमेव जयते'}
 })();
 go(location.hash.slice(1)||'home');
+
+/* सजावट: मंडल, आज का राग, विशेषता-पट्टिकाएँ, शीर्षक-पट्टियाँ */
+(()=>{const st=$('#home .stage');let p='';
+ for(let i=0;i<24;i++)p+=`<path transform="rotate(${i*15} 200 200)" d="M200 18Q224 70 200 122Q176 70 200 18Z"/>`;
+ for(let i=0;i<12;i++)p+=`<path transform="rotate(${i*30+15} 200 200)" d="M200 72Q216 106 200 142Q184 106 200 72Z"/>`;
+ st.insertAdjacentHTML('afterbegin',`<svg class="mand" viewBox="0 0 400 400" aria-hidden="true"><defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e3a1"/><stop offset="1" stop-color="#17a173"/></linearGradient></defs><g fill="none" stroke="url(#mg)" stroke-width="1.3"><circle cx="200" cy="200" r="196"/><circle cx="200" cy="200" r="160" stroke-dasharray="3 7"/><circle cx="200" cy="200" r="70"/><circle cx="200" cy="200" r="30"/>${p}</g></svg>`);
+ const d=new Date(),h=d.getHours()+d.getMinutes()/60,c=B.raags.map((r,i)=>({r,i,w:hw(r.samay||'')})).filter(x=>x.w[1]-x.w[0]<24&&inWin(h,x.w)),x=c.length?c[Math.random()*c.length|0]:{r:B.raags[0],i:0};
+ const td=E('div','today',`<div class="ti">${h<5||h>=20?'🌙':h<9?'🌅':h<16?'☀️':'🌇'}</div><div><div class="muted">इस प्रहर का राग</div><h3 class="dev" style="margin:.1em 0">राग ${X(x.r.name)}</h3><div class="dev muted">${X(x.r.thaat)} थाट · ${X(x.r.samay)}</div></div><button class="btn gold">▶ सुनें</button><button class="btn">विवरण</button>`);
+ $('.nat').before(td);const bs=td.querySelectorAll('button');bs[0].onclick=()=>{stopAll();seq(pak(x.r.pakad),150)};bs[1].onclick=()=>openRaag(x.i);
+ const FT=[['🎼','राग',B.raags.length+' रागों की स्वर-रचना सुनिए','raags'],['🥁','ताल',B.taals.length+' तालों के ठेके सुनिए','taals'],['🎹','स्वर-प्रयोगशाला','बारह स्वर तथा दस थाट','lab'],['🕰️','प्रहर-घड़ी','दिन के समय के अनुसार राग','clock'],['🧠','अध्ययन','स्मरण-पत्र तथा प्रश्नोत्तरी','cards']];
+ $('#stats').insertAdjacentHTML('afterend','<div class="orn">✦ ❖ ✦</div><div class="feats">'+FT.map(f=>`<div class="feat" data-go="${f[3]}"><i>${f[0]}</i><b>${f[1]}</b><span>${f[2]}</span></div>`).join('')+'</div>');
+ $('.fw').append(E('div','lbl','भारत का राष्ट्रीय ध्वज'));$('#emb').append(E('div','lbl','भारत का राज्य-चिह्न'))})();

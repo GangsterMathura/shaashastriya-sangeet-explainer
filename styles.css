@@ -206,3 +206,41 @@ header::after,.panel::after,.panel::before,.card::before,.stat::before,.card::af
 .embimg{position:absolute;left:50%;top:50%;width:min(340px,80vw);height:auto;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 18px 30px #000a,0 0 40px #d8b45a55;animation:ef 6s ease-in-out infinite alternate}
 @keyframes ef{from{transform:translate(-50%,-52%)}to{transform:translate(-50%,-48%)}}
 .lite .embimg{animation:none}
+
+/* ===== अधिक आकर्षक रूप (हल्की, स्थिर सजावट) ===== */
+body{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90' fill='none' stroke='%23d8b45a' stroke-opacity='.11'%3E%3Cpath d='M45 5Q60 25 45 45Q30 25 45 5ZM45 85Q60 65 45 45Q30 65 45 85ZM5 45Q25 60 45 45Q25 30 5 45ZM85 45Q65 60 45 45Q65 30 85 45Z'/%3E%3Ccircle cx='45' cy='45' r='4'/%3E%3Cpath d='M0 0L12 12M90 0L78 12M0 90L12 78M90 90L78 78'/%3E%3C/svg%3E"),radial-gradient(1000px 700px at 12% -5%,#7d1738 0%,transparent 60%),radial-gradient(900px 800px at 100% 105%,#0e7a58 0%,transparent 60%),linear-gradient(160deg,#12040a,#0a0508 45%,#03140f);background-attachment:scroll}
+header::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#ff9933 33%,#fff 33% 66%,#138808 66%)}
+footer#bar{background:linear-gradient(180deg,#2a0610ee,#12090cf8);box-shadow:0 -10px 30px #000a;border-top:2px solid var(--gd)}
+footer#bar::before{content:"";position:absolute;left:0;right:0;top:-2px;height:2px;background:linear-gradient(90deg,#ff9933,#fff,#138808)}
+main h2{display:flex;align-items:center;justify-content:center;gap:18px;font-size:clamp(30px,5vw,46px)}
+main h2::before,main h2::after{content:"";flex:0 1 110px;height:2px;margin:0;width:auto;animation:none;background:linear-gradient(90deg,transparent,#d8b45a)}
+main h2::after{transform:scaleX(-1)}
+#home .stage{position:relative}
+#home .stage::before{content:"";position:absolute;left:10%;right:10%;top:-5%;bottom:-5%;background:radial-gradient(ellipse,#d8b45a30,transparent 64%);pointer-events:none}
+#home h1,#home .sub,#home .lead{position:relative;z-index:2}
+h1{font-size:clamp(54px,10vw,120px)}
+.lead{font-size:23px;max-width:780px}
+.mand{position:absolute;left:50%;top:50%;width:min(560px,92vw);margin:0;opacity:.55;transform:translate(-50%,-50%);animation:mrot 90s linear infinite;pointer-events:none}
+@keyframes mrot{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.lite .mand{animation:none}
+.today{display:flex;gap:26px;align-items:center;justify-content:center;flex-wrap:wrap;margin:34px auto;max-width:920px;padding:24px 32px;border-radius:26px;border:1px solid var(--gd);background:linear-gradient(180deg,#ffffff30 0,#ffffff08 45%,transparent 46%),linear-gradient(135deg,#7b1a3acc,#0f6b4fbb);box-shadow:0 20px 50px #000a,inset 0 1px 0 #ffffff66,inset 0 0 50px #d8b45a18}
+.today h3{font-size:34px;color:var(--gd2)}.today .ti{font-size:52px;animation:br 3s ease-in-out infinite alternate}@keyframes br{to{transform:scale(1.14)}}
+.nat{padding:38px 30px 30px;margin:34px 0;border-radius:32px;border:1px solid var(--ln);background:radial-gradient(ellipse at center,#d8b45a18,transparent 70%),linear-gradient(180deg,#ffffff12,transparent)}
+.lbl{text-align:center;color:var(--gd2);font-size:20px;margin-top:14px;font-weight:700}.emb .lbl{position:absolute;left:0;right:0;bottom:-4px;margin:0}
+.emb::before,.emb::after{content:"";position:absolute;left:50%;top:48%;border-radius:50%;pointer-events:none;animation:rot2 50s linear infinite}
+.emb::before{width:min(400px,92vw);aspect-ratio:1;margin-left:calc(min(400px,92vw)/-2);margin-top:calc(min(400px,92vw)/-2);border:2px dashed #d8b45aaa}
+.emb::after{width:min(372px,86vw);aspect-ratio:1;margin-left:calc(min(372px,86vw)/-2);margin-top:calc(min(372px,86vw)/-2);border:1px solid #17a173aa;animation-direction:reverse}
+@keyframes rot2{to{transform:rotate(360deg)}}
+.lite .emb::before,.lite .emb::after{animation:none}
+.stat{padding:18px 34px}.stat b{font-size:46px;background:linear-gradient(180deg,#fff5cf,#d8b45a 60%,#9a7020);-webkit-background-clip:text;background-clip:text;color:transparent}
+.orn{text-align:center;color:var(--gd);font-size:22px;letter-spacing:.5em;margin:30px 0 8px;opacity:.85}
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin:18px 0 30px}
+.feat{padding:24px 18px;border-radius:22px;border:1px solid var(--ln);background:linear-gradient(180deg,#ffffff26,#ffffff06 45%,#0003 46%),linear-gradient(150deg,#6d133060,#0c5a4240);cursor:pointer;text-align:center;transition:transform .25s,box-shadow .25s,border-color .25s;box-shadow:inset 0 1px 0 #ffffff44,0 12px 26px #0006}
+.feat:hover{transform:translateY(-7px);border-color:var(--gd);box-shadow:inset 0 1px 0 #ffffff66,0 20px 38px #000a,0 0 30px #d8b45a44}
+.feat i{font-style:normal;font-size:46px;display:block;margin-bottom:8px}.feat b{display:block;font-size:23px;color:var(--gd2)}.feat span{color:var(--mu);font-size:17px}
+.panel{border-top:2px solid #d8b45a77;box-shadow:inset 0 1px 0 #ffffff33,inset 0 0 60px #d8b45a0d,0 20px 50px #0007}
+.sheet{box-shadow:0 0 0 1px #d8b45a66,0 40px 100px #000,inset 0 0 90px #d8b45a12}
+.card{box-shadow:inset 0 3px 0 var(--ac,#d8b45a),0 14px 28px #0006}.card:hover{box-shadow:inset 0 3px 0 var(--ac,#d8b45a),0 22px 40px #000a,0 0 28px #d8b45a44}
+.card .d{font-size:30px}.card .tm{margin-top:6px;color:var(--gd2)}
+.card[data-b="प्रातःकाल"]{--ac:#ff9a3c}.card[data-b="मध्याह्न"]{--ac:#ffd24a}.card[data-b="सायंकाल"]{--ac:#e0446b}.card[data-b="रात्रि"]{--ac:#8b7bff}.card[data-b="सर्वकालिक"]{--ac:#17a173}.card[data-b="वर्षा ऋतु"]{--ac:#4fc3f7}
+.chip{font-size:17px;padding:7px 16px}
